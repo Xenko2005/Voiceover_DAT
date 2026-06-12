@@ -1,0 +1,4 @@
+numpy
+openai-whisper
+silero-vad
+torch
