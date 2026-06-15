@@ -1,1 +1,1026 @@
-[]
+{
+  "input_file": "output_files\\ted_talk.json",
+  "ollama_model": "qwen3:4b",
+  "use_llm_judge": false,
+  "document_context": "**CONTEXT PACK**  \n\n1. **Chủ đề chính của bài**: Tự nói với bản thân và ảnh hưởng tâm lý của nó trong đời sống hàng ngày.  \n\n2. **Bối cảnh / tình huống**: Bài giảng tâm lý học giải thích hiện tượng tự nói với bản thân từ góc độ khoa học, kèm ví dụ thực tế và cách điều chỉnh để cải thiện tâm trạng.  \n\n3. **Nhân vật, ngôi xưng hô, quan hệ**:  \n   - Người nói (ngôi thứ nhất: \"tôi\"), khán giả (ngôi thứ ba), bản thân (người nói).  \n   - Lev Vygotsky (triết gia tâm lý học Nga), CBT (trị liệu hành vi nhận thức).  \n\n4. **Văn phong nên dùng khi dịch sang tiếng Việt**: Ngôn ngữ tự nhiên, gần gũi, mạch lạc, tránh thuật ngữ chuyên sâu nhưng đảm bảo độ chính xác khoa học. Sử dụng câu ngắn, phù hợp phong cách TED Talk.  \n\n5. **Các thuật ngữ, cụm từ, tên riêng quan trọng cần dịch nhất quán**:  \n   - Self-talk → **tự nói với bản thân**  \n   - Inner speech → **ngôn ngữ nội tâm**  \n   - Cognitive behavioral therapy (CBT) → **trị liệu hành vi nhận thức (CBT)**  \n   - Lev Vygotsky → **Lev Vygotsky** (triết gia tâm lý học Nga)  \n   - Distanced self-talk → **tự nói với bản thân như đang trò chuyện với người khác**  \n   - Negative self-talk → **tự nói tiêu cực**  \n   - Motivational self-talk → **tự nói động viên**  \n\n6. **Lưu ý dịch các câu ngắn/câu cụt**:  \n   - Giữ nguyên cảm xúc và ngữ điệu (ví dụ: *\"I can't do anything right!\"* → *\"Tôi không làm được gì đúng!\"*).  \n   - Dịch ngắn gọn không thêm từ thừa (ví dụ: *\"Unless...\"* → *\"Trừ khi...\"*, *\"I need a haircut\"* → *\"Tôi cần cắt tóc\"*).  \n   - Đảm bảo câu ngắn trong transcript dịch mạch lạc, không làm mất ý nghĩa nguyên bản.",
+  "results": [
+    {
+      "segment_id": 1,
+      "source_text": "As your morning alarm blares, you mutter to yourself, Why did I set it so early?",
+      "start_time": 7.2,
+      "end_time": 13.1,
+      "duration": 5.9,
+      "pred_len_vi": 21,
+      "max_vi_final": 22,
+      "best_translation": "Báo thức sáng kêu vang, tôi lẩm bẩm: Tại sao tôi cài quá sớm?",
+      "best_score": 0.6018181818181818,
+      "candidates": [
+        {
+          "text_vi": "Báo thức sáng kêu vang, tôi lẩm bẩm: Tại sao tôi cài quá sớm?",
+          "vi_units": 14,
+          "sem_score": 0.82,
+          "dur_error": 0.36363636363636365,
+          "flu_penalty": 0.0,
+          "final_score": 0.6018181818181818
+        },
+        {
+          "text_vi": "Báo thức sáng kêu, tôi lẩm bẩm: Tại sao tôi cài quá sớm?",
+          "vi_units": 13,
+          "sem_score": 0.82,
+          "dur_error": 0.4090909090909091,
+          "flu_penalty": 0.0,
+          "final_score": 0.5745454545454545
+        },
+        {
+          "text_vi": "Báo thức sáng kêu, tôi tự nói: Tại sao tôi cài quá sớm?",
+          "vi_units": 13,
+          "sem_score": 0.82,
+          "dur_error": 0.4090909090909091,
+          "flu_penalty": 0.0,
+          "final_score": 0.5745454545454545
+        }
+      ],
+      "context_used": {
+        "previous_context": "",
+        "next_context": "- [13.5s - 16.6s] While brushing your teeth, you think, I need a haircut.\n- [16.9s - 17.8s] Unless...",
+        "global_context_preview": "**CONTEXT PACK**  \n\n1. **Chủ đề chính của bài**: Tự nói với bản thân và ảnh hưởng tâm lý của nó trong đời sống hàng ngày.  \n\n2. **Bối cảnh / tình huống**: Bài giảng tâm lý học giải thích hiện tượng tự nói với bản thân từ góc độ khoa học, kèm ví dụ thực tế và cách điều chỉnh để cải thiện tâm trạng.  \n\n3. **Nhân vật, ngôi xưng hô, quan hệ**:  \n   - Người nói (ngôi thứ nhất: \"tôi\"), khán giả (ngôi thứ ba), bản thân (người nói).  \n   - Lev Vygotsky (triết gia tâm lý học Nga), CBT (trị liệu hành vi nhận thức).  \n\n4. **Văn phong nên dùng khi dịch sang tiếng Việt**: Ngôn ngữ tự nhiên, gần gũi, mạch lạc, tránh thuật ngữ chuyên sâu nhưng đảm bảo độ chính xác khoa học. Sử dụng câu ngắn, phù hợp phong cách TED Talk.  \n\n5. **Các thuật ngữ, cụm từ, tên riêng quan trọng cần dịch nhất quán**:  \n   - Self"
+      }
+    },
+    {
+      "segment_id": 2,
+      "source_text": "While brushing your teeth, you think, I need a haircut.",
+      "start_time": 13.5,
+      "end_time": 16.6,
+      "duration": 3.1,
+      "pred_len_vi": 14,
+      "max_vi_final": 15,
+      "best_translation": "Khi đánh răng, tôi tự nói: 'Tôi cần cắt tóc'.",
+      "best_score": 0.62,
+      "candidates": [
+        {
+          "text_vi": "Đánh răng, tôi nghĩ: 'Cần cắt tóc'.",
+          "vi_units": 7,
+          "sem_score": 0.82,
+          "dur_error": 0.5333333333333333,
+          "flu_penalty": 0.0,
+          "final_score": 0.49999999999999994
+        },
+        {
+          "text_vi": "Khi đánh răng, tôi tự nói: 'Tôi cần cắt tóc'.",
+          "vi_units": 10,
+          "sem_score": 0.82,
+          "dur_error": 0.3333333333333333,
+          "flu_penalty": 0.0,
+          "final_score": 0.62
+        },
+        {
+          "text_vi": "Đánh răng, tôi cần cắt tóc.",
+          "vi_units": 6,
+          "sem_score": 0.7,
+          "dur_error": 0.6,
+          "flu_penalty": 0.0,
+          "final_score": 0.33999999999999997
+        }
+      ],
+      "context_used": {
+        "previous_context": "- [7.2s - 13.1s] As your morning alarm blares, you mutter to yourself, Why did I set it so early?",
+        "next_context": "- [16.9s - 17.8s] Unless...\n- [18.5s - 23.9s] Rushing out the front door, you reach for your keys and realize they're not there.",
+        "global_context_preview": "**CONTEXT PACK**  \n\n1. **Chủ đề chính của bài**: Tự nói với bản thân và ảnh hưởng tâm lý của nó trong đời sống hàng ngày.  \n\n2. **Bối cảnh / tình huống**: Bài giảng tâm lý học giải thích hiện tượng tự nói với bản thân từ góc độ khoa học, kèm ví dụ thực tế và cách điều chỉnh để cải thiện tâm trạng.  \n\n3. **Nhân vật, ngôi xưng hô, quan hệ**:  \n   - Người nói (ngôi thứ nhất: \"tôi\"), khán giả (ngôi thứ ba), bản thân (người nói).  \n   - Lev Vygotsky (triết gia tâm lý học Nga), CBT (trị liệu hành vi nhận thức).  \n\n4. **Văn phong nên dùng khi dịch sang tiếng Việt**: Ngôn ngữ tự nhiên, gần gũi, mạch lạc, tránh thuật ngữ chuyên sâu nhưng đảm bảo độ chính xác khoa học. Sử dụng câu ngắn, phù hợp phong cách TED Talk.  \n\n5. **Các thuật ngữ, cụm từ, tên riêng quan trọng cần dịch nhất quán**:  \n   - Self"
+      }
+    },
+    {
+      "segment_id": 3,
+      "source_text": "Unless...",
+      "start_time": 16.9,
+      "end_time": 17.8,
+      "duration": 0.9,
+      "pred_len_vi": 2,
+      "max_vi_final": 3,
+      "best_translation": "Trừ khi này",
+      "best_score": 0.39,
+      "candidates": [
+        {
+          "text_vi": "Trừ khi",
+          "vi_units": 2,
+          "sem_score": 0.45,
+          "dur_error": 0.3333333333333333,
+          "flu_penalty": 0.5,
+          "final_score": 0.1
+        },
+        {
+          "text_vi": "Nếu không",
+          "vi_units": 2,
+          "sem_score": 0.45,
+          "dur_error": 0.3333333333333333,
+          "flu_penalty": 0.2,
+          "final_score": 0.19
+        },
+        {
+          "text_vi": "Trừ khi này",
+          "vi_units": 3,
+          "sem_score": 0.45,
+          "dur_error": 0.0,
+          "flu_penalty": 0.2,
+          "final_score": 0.39
+        }
+      ],
+      "context_used": {
+        "previous_context": "- [7.2s - 13.1s] As your morning alarm blares, you mutter to yourself, Why did I set it so early?\n- [13.5s - 16.6s] While brushing your teeth, you think, I need a haircut.",
+        "next_context": "- [18.5s - 23.9s] Rushing out the front door, you reach for your keys and realize they're not there.\n- [24.0s - 30.3s] Frustrated, you shout, I can't do anything right! Just in time to notice your neighbor.",
+        "global_context_preview": "**CONTEXT PACK**  \n\n1. **Chủ đề chính của bài**: Tự nói với bản thân và ảnh hưởng tâm lý của nó trong đời sống hàng ngày.  \n\n2. **Bối cảnh / tình huống**: Bài giảng tâm lý học giải thích hiện tượng tự nói với bản thân từ góc độ khoa học, kèm ví dụ thực tế và cách điều chỉnh để cải thiện tâm trạng.  \n\n3. **Nhân vật, ngôi xưng hô, quan hệ**:  \n   - Người nói (ngôi thứ nhất: \"tôi\"), khán giả (ngôi thứ ba), bản thân (người nói).  \n   - Lev Vygotsky (triết gia tâm lý học Nga), CBT (trị liệu hành vi nhận thức).  \n\n4. **Văn phong nên dùng khi dịch sang tiếng Việt**: Ngôn ngữ tự nhiên, gần gũi, mạch lạc, tránh thuật ngữ chuyên sâu nhưng đảm bảo độ chính xác khoa học. Sử dụng câu ngắn, phù hợp phong cách TED Talk.  \n\n5. **Các thuật ngữ, cụm từ, tên riêng quan trọng cần dịch nhất quán**:  \n   - Self"
+      }
+    },
+    {
+      "segment_id": 4,
+      "source_text": "Rushing out the front door, you reach for your keys and realize they're not there.",
+      "start_time": 18.5,
+      "end_time": 23.9,
+      "duration": 5.4,
+      "pred_len_vi": 19,
+      "max_vi_final": 20,
+      "best_translation": "Tôi vội ra cửa, tay lấy chìa khóa nhưng không thấy đâu.",
+      "best_score": 0.58,
+      "candidates": [
+        {
+          "text_vi": "Tôi vội ra cửa, tay lấy chìa khóa nhưng không thấy đâu.",
+          "vi_units": 12,
+          "sem_score": 0.82,
+          "dur_error": 0.4,
+          "flu_penalty": 0.0,
+          "final_score": 0.58
+        }
+      ],
+      "context_used": {
+        "previous_context": "- [13.5s - 16.6s] While brushing your teeth, you think, I need a haircut.\n- [16.9s - 17.8s] Unless...",
+        "next_context": "- [24.0s - 30.3s] Frustrated, you shout, I can't do anything right! Just in time to notice your neighbor.\n- [31.0s - 39.3s] Being caught talking to yourself can feel embarrassing, and some people even stigmatize this behavior as a sign of mental instability.",
+        "global_context_preview": "**CONTEXT PACK**  \n\n1. **Chủ đề chính của bài**: Tự nói với bản thân và ảnh hưởng tâm lý của nó trong đời sống hàng ngày.  \n\n2. **Bối cảnh / tình huống**: Bài giảng tâm lý học giải thích hiện tượng tự nói với bản thân từ góc độ khoa học, kèm ví dụ thực tế và cách điều chỉnh để cải thiện tâm trạng.  \n\n3. **Nhân vật, ngôi xưng hô, quan hệ**:  \n   - Người nói (ngôi thứ nhất: \"tôi\"), khán giả (ngôi thứ ba), bản thân (người nói).  \n   - Lev Vygotsky (triết gia tâm lý học Nga), CBT (trị liệu hành vi nhận thức).  \n\n4. **Văn phong nên dùng khi dịch sang tiếng Việt**: Ngôn ngữ tự nhiên, gần gũi, mạch lạc, tránh thuật ngữ chuyên sâu nhưng đảm bảo độ chính xác khoa học. Sử dụng câu ngắn, phù hợp phong cách TED Talk.  \n\n5. **Các thuật ngữ, cụm từ, tên riêng quan trọng cần dịch nhất quán**:  \n   - Self"
+      }
+    },
+    {
+      "segment_id": 5,
+      "source_text": "Frustrated, you shout, I can't do anything right! Just in time to notice your neighbor.",
+      "start_time": 24.0,
+      "end_time": 30.3,
+      "duration": 6.3,
+      "pred_len_vi": 18,
+      "max_vi_final": 19,
+      "best_translation": "Bực bội, tôi hét: 'Tôi không làm được gì đúng!' vừa kịp nhận ra hàng xóm.",
+      "best_score": 0.7252631578947368,
+      "candidates": [
+        {
+          "text_vi": "Bực bội, tôi hét: 'Tôi không làm được gì đúng!' vừa kịp thấy hàng xóm.",
+          "vi_units": 15,
+          "sem_score": 0.82,
+          "dur_error": 0.21052631578947367,
+          "flu_penalty": 0.0,
+          "final_score": 0.6936842105263158
+        },
+        {
+          "text_vi": "Tôi bực bội hét: 'Tôi không làm được gì đúng!' vừa kịp thấy hàng xóm.",
+          "vi_units": 15,
+          "sem_score": 0.82,
+          "dur_error": 0.21052631578947367,
+          "flu_penalty": 0.0,
+          "final_score": 0.6936842105263158
+        },
+        {
+          "text_vi": "Bực bội, tôi hét: 'Tôi không làm được gì đúng!' vừa kịp nhận ra hàng xóm.",
+          "vi_units": 16,
+          "sem_score": 0.82,
+          "dur_error": 0.15789473684210525,
+          "flu_penalty": 0.0,
+          "final_score": 0.7252631578947368
+        }
+      ],
+      "context_used": {
+        "previous_context": "- [16.9s - 17.8s] Unless...\n- [18.5s - 23.9s] Rushing out the front door, you reach for your keys and realize they're not there.",
+        "next_context": "- [31.0s - 39.3s] Being caught talking to yourself can feel embarrassing, and some people even stigmatize this behavior as a sign of mental instability.\n- [39.5s - 57.7s] But decades of psychology research show that talking to yourself is completely normal. In fact, most if not all of us engage in some form of self-talk every single day. So why do we talk to ourselves? And does what we say matter?",
+        "global_context_preview": "**CONTEXT PACK**  \n\n1. **Chủ đề chính của bài**: Tự nói với bản thân và ảnh hưởng tâm lý của nó trong đời sống hàng ngày.  \n\n2. **Bối cảnh / tình huống**: Bài giảng tâm lý học giải thích hiện tượng tự nói với bản thân từ góc độ khoa học, kèm ví dụ thực tế và cách điều chỉnh để cải thiện tâm trạng.  \n\n3. **Nhân vật, ngôi xưng hô, quan hệ**:  \n   - Người nói (ngôi thứ nhất: \"tôi\"), khán giả (ngôi thứ ba), bản thân (người nói).  \n   - Lev Vygotsky (triết gia tâm lý học Nga), CBT (trị liệu hành vi nhận thức).  \n\n4. **Văn phong nên dùng khi dịch sang tiếng Việt**: Ngôn ngữ tự nhiên, gần gũi, mạch lạc, tránh thuật ngữ chuyên sâu nhưng đảm bảo độ chính xác khoa học. Sử dụng câu ngắn, phù hợp phong cách TED Talk.  \n\n5. **Các thuật ngữ, cụm từ, tên riêng quan trọng cần dịch nhất quán**:  \n   - Self"
+      }
+    },
+    {
+      "segment_id": 6,
+      "source_text": "Being caught talking to yourself can feel embarrassing, and some people even stigmatize this behavior as a sign of mental instability.",
+      "start_time": 31.0,
+      "end_time": 39.3,
+      "duration": 8.3,
+      "pred_len_vi": 26,
+      "max_vi_final": 27,
+      "best_translation": "**\"Bị bắt nói với bản thân khiến xấu hổ, một số người coi đây là dấu hiệu mất ổn định tâm thần.\"**",
+      "best_score": 0.6638888888888889,
+      "candidates": [
+        {
+          "text_vi": "Dưới đây là ba phiên dịch tự nhiên và chính xác, đảm bảo độ dài từ 22–27 tiếng Việt:",
+          "vi_units": 19,
+          "sem_score": 0.82,
+          "dur_error": 0.2962962962962963,
+          "flu_penalty": 0.0,
+          "final_score": 0.6422222222222222
+        },
+        {
+          "text_vi": "**\"Bị bắt nói với bản thân khiến xấu hổ, một số người coi đây là dấu hiệu mất ổn định tâm thần.\"**",
+          "vi_units": 22,
+          "sem_score": 0.82,
+          "dur_error": 0.18518518518518517,
+          "flu_penalty": 0.15,
+          "final_score": 0.6638888888888889
+        },
+        {
+          "text_vi": "(23 tiếng)*",
+          "vi_units": 2,
+          "sem_score": 0.45,
+          "dur_error": 0.9259259259259259,
+          "flu_penalty": 0.2,
+          "final_score": -0.16555555555555557
+        }
+      ],
+      "context_used": {
+        "previous_context": "- [18.5s - 23.9s] Rushing out the front door, you reach for your keys and realize they're not there.\n- [24.0s - 30.3s] Frustrated, you shout, I can't do anything right! Just in time to notice your neighbor.",
+        "next_context": "- [39.5s - 57.7s] But decades of psychology research show that talking to yourself is completely normal. In fact, most if not all of us engage in some form of self-talk every single day. So why do we talk to ourselves? And does what we say matter?\n- [58.3s - 76.3s] Self-talk refers to the narration inside your head, sometimes called inner speech. It differs from mental imagery, recalling facts and figures. Specifically, psychologists define self-talk as verbalized thoughts directed toward yourself or some facet of your life.",
+        "global_context_preview": "**CONTEXT PACK**  \n\n1. **Chủ đề chính của bài**: Tự nói với bản thân và ảnh hưởng tâm lý của nó trong đời sống hàng ngày.  \n\n2. **Bối cảnh / tình huống**: Bài giảng tâm lý học giải thích hiện tượng tự nói với bản thân từ góc độ khoa học, kèm ví dụ thực tế và cách điều chỉnh để cải thiện tâm trạng.  \n\n3. **Nhân vật, ngôi xưng hô, quan hệ**:  \n   - Người nói (ngôi thứ nhất: \"tôi\"), khán giả (ngôi thứ ba), bản thân (người nói).  \n   - Lev Vygotsky (triết gia tâm lý học Nga), CBT (trị liệu hành vi nhận thức).  \n\n4. **Văn phong nên dùng khi dịch sang tiếng Việt**: Ngôn ngữ tự nhiên, gần gũi, mạch lạc, tránh thuật ngữ chuyên sâu nhưng đảm bảo độ chính xác khoa học. Sử dụng câu ngắn, phù hợp phong cách TED Talk.  \n\n5. **Các thuật ngữ, cụm từ, tên riêng quan trọng cần dịch nhất quán**:  \n   - Self"
+      }
+    },
+    {
+      "segment_id": 7,
+      "source_text": "But decades of psychology research show that talking to yourself is completely normal. In fact, most if not all of us engage in some form of self-talk every single day. So why do we talk to ourselves? And does what we say matter?",
+      "start_time": 39.5,
+      "end_time": 57.7,
+      "duration": 18.2,
+      "pred_len_vi": 64,
+      "max_vi_final": 65,
+      "best_translation": "Nhiều thập kỷ nghiên cứu tâm lý học cho thấy: tự nói với bản thân hoàn toàn bình thường. Hầu hết chúng ta đều tự nói mỗi ngày. Vậy tại sao lại nói với bản thân? Điều đó có quan trọng không?",
+      "best_score": 0.5626923076923076,
+      "candidates": [
+        {
+          "text_vi": "Nhiều thập kỷ nghiên cứu tâm lý học cho thấy: tự nói với bản thân hoàn toàn bình thường. Hầu hết chúng ta đều tự nói mỗi ngày. Vậy tại sao lại nói với bản thân? Điều đó có quan trọng không?",
+          "vi_units": 42,
+          "sem_score": 0.82,
+          "dur_error": 0.35384615384615387,
+          "flu_penalty": 0.15,
+          "final_score": 0.5626923076923076
+        },
+        {
+          "text_vi": "Tự nói với bản thân là bình thường theo nghiên cứu tâm lý học. Chúng ta thường tự nói mỗi ngày. Tại sao lại nói với bản thân? Điều đó quan trọng không?",
+          "vi_units": 33,
+          "sem_score": 0.82,
+          "dur_error": 0.49230769230769234,
+          "flu_penalty": 0.15,
+          "final_score": 0.4796153846153845
+        },
+        {
+          "text_vi": "Nhiều thập kỷ nghiên cứu tâm lý học khẳng định: tự nói với bản thân là bình thường. Chúng ta tự nói mỗi ngày. Tại sao lại nói với bản thân? Điều đó có quan trọng không?",
+          "vi_units": 37,
+          "sem_score": 0.82,
+          "dur_error": 0.4307692307692308,
+          "flu_penalty": 0.15,
+          "final_score": 0.5165384615384615
+        }
+      ],
+      "context_used": {
+        "previous_context": "- [24.0s - 30.3s] Frustrated, you shout, I can't do anything right! Just in time to notice your neighbor.\n- [31.0s - 39.3s] Being caught talking to yourself can feel embarrassing, and some people even stigmatize this behavior as a sign of mental instability.",
+        "next_context": "- [58.3s - 76.3s] Self-talk refers to the narration inside your head, sometimes called inner speech. It differs from mental imagery, recalling facts and figures. Specifically, psychologists define self-talk as verbalized thoughts directed toward yourself or some facet of your life.\n- [77.2s - 86.8s] This includes personal conversations like, I need to work on my free throw. But it also includes reflections you have throughout the day, like, the gym's crowded tonight.",
+        "global_context_preview": "**CONTEXT PACK**  \n\n1. **Chủ đề chính của bài**: Tự nói với bản thân và ảnh hưởng tâm lý của nó trong đời sống hàng ngày.  \n\n2. **Bối cảnh / tình huống**: Bài giảng tâm lý học giải thích hiện tượng tự nói với bản thân từ góc độ khoa học, kèm ví dụ thực tế và cách điều chỉnh để cải thiện tâm trạng.  \n\n3. **Nhân vật, ngôi xưng hô, quan hệ**:  \n   - Người nói (ngôi thứ nhất: \"tôi\"), khán giả (ngôi thứ ba), bản thân (người nói).  \n   - Lev Vygotsky (triết gia tâm lý học Nga), CBT (trị liệu hành vi nhận thức).  \n\n4. **Văn phong nên dùng khi dịch sang tiếng Việt**: Ngôn ngữ tự nhiên, gần gũi, mạch lạc, tránh thuật ngữ chuyên sâu nhưng đảm bảo độ chính xác khoa học. Sử dụng câu ngắn, phù hợp phong cách TED Talk.  \n\n5. **Các thuật ngữ, cụm từ, tên riêng quan trọng cần dịch nhất quán**:  \n   - Self"
+      }
+    },
+    {
+      "segment_id": 8,
+      "source_text": "Self-talk refers to the narration inside your head, sometimes called inner speech. It differs from mental imagery, recalling facts and figures. Specifically, psychologists define self-talk as verbalized thoughts directed toward yourself or some facet of your life.",
+      "start_time": 58.3,
+      "end_time": 76.3,
+      "duration": 18.0,
+      "pred_len_vi": 53,
+      "max_vi_final": 54,
+      "best_translation": "Đây là ngôn ngữ nội tâm trong đầu, tự nói với bản thân. Khác với việc nhớ lại thông tin, nó là suy nghĩ hướng đến bản thân hoặc một khía cạnh đời sống.",
+      "best_score": 0.5527777777777777,
+      "candidates": [
+        {
+          "text_vi": "Tự nói với bản thân là ngôn ngữ nội tâm trong đầu. Khác với việc nhớ lại thông tin, đây là suy nghĩ hướng đến bản thân hoặc một khía cạnh đời sống.",
+          "vi_units": 33,
+          "sem_score": 0.82,
+          "dur_error": 0.3888888888888889,
+          "flu_penalty": 0.15,
+          "final_score": 0.5416666666666666
+        },
+        {
+          "text_vi": "Tự nói với bản thân là những suy nghĩ trong đầu. Nó khác với việc hồi tưởng thông tin, là suy nghĩ hướng đến bản thân hoặc một khía cạnh đời sống.",
+          "vi_units": 32,
+          "sem_score": 0.82,
+          "dur_error": 0.4074074074074074,
+          "flu_penalty": 0.15,
+          "final_score": 0.5305555555555556
+        },
+        {
+          "text_vi": "Đây là ngôn ngữ nội tâm trong đầu, tự nói với bản thân. Khác với việc nhớ lại thông tin, nó là suy nghĩ hướng đến bản thân hoặc một khía cạnh đời sống.",
+          "vi_units": 34,
+          "sem_score": 0.82,
+          "dur_error": 0.37037037037037035,
+          "flu_penalty": 0.15,
+          "final_score": 0.5527777777777777
+        }
+      ],
+      "context_used": {
+        "previous_context": "- [31.0s - 39.3s] Being caught talking to yourself can feel embarrassing, and some people even stigmatize this behavior as a sign of mental instability.\n- [39.5s - 57.7s] But decades of psychology research show that talking to yourself is completely normal. In fact, most if not all of us engage in some form of self-talk every single day. So why do we talk to ourselves? And does what we say matter?",
+        "next_context": "- [77.2s - 86.8s] This includes personal conversations like, I need to work on my free throw. But it also includes reflections you have throughout the day, like, the gym's crowded tonight.\n- [87.1s - 95.4s] I'll come back tomorrow. And while most self-talk in adults tends to be silent, speaking to yourself out loud also falls into this category.",
+        "global_context_preview": "**CONTEXT PACK**  \n\n1. **Chủ đề chính của bài**: Tự nói với bản thân và ảnh hưởng tâm lý của nó trong đời sống hàng ngày.  \n\n2. **Bối cảnh / tình huống**: Bài giảng tâm lý học giải thích hiện tượng tự nói với bản thân từ góc độ khoa học, kèm ví dụ thực tế và cách điều chỉnh để cải thiện tâm trạng.  \n\n3. **Nhân vật, ngôi xưng hô, quan hệ**:  \n   - Người nói (ngôi thứ nhất: \"tôi\"), khán giả (ngôi thứ ba), bản thân (người nói).  \n   - Lev Vygotsky (triết gia tâm lý học Nga), CBT (trị liệu hành vi nhận thức).  \n\n4. **Văn phong nên dùng khi dịch sang tiếng Việt**: Ngôn ngữ tự nhiên, gần gũi, mạch lạc, tránh thuật ngữ chuyên sâu nhưng đảm bảo độ chính xác khoa học. Sử dụng câu ngắn, phù hợp phong cách TED Talk.  \n\n5. **Các thuật ngữ, cụm từ, tên riêng quan trọng cần dịch nhất quán**:  \n   - Self"
+      }
+    },
+    {
+      "segment_id": 9,
+      "source_text": "This includes personal conversations like, I need to work on my free throw. But it also includes reflections you have throughout the day, like, the gym's crowded tonight.",
+      "start_time": 77.2,
+      "end_time": 86.8,
+      "duration": 9.6,
+      "pred_len_vi": 34,
+      "max_vi_final": 35,
+      "best_translation": "Tự nói như 'Tôi cần luyện ném tự do' và suy nghĩ tối nay: 'Phòng tập đông đúc'",
+      "best_score": 0.5285714285714285,
+      "candidates": [
+        {
+          "text_vi": "Tự nói như 'Tôi cần luyện ném tự do' và suy nghĩ tối nay: 'Phòng tập đông đúc'",
+          "vi_units": 18,
+          "sem_score": 0.82,
+          "dur_error": 0.4857142857142857,
+          "flu_penalty": 0.0,
+          "final_score": 0.5285714285714285
+        },
+        {
+          "text_vi": "Ví dụ: 'Tôi cần luyện ném tự do' và 'Phòng tập tối nay đông đúc'",
+          "vi_units": 15,
+          "sem_score": 0.82,
+          "dur_error": 0.5714285714285714,
+          "flu_penalty": 0.0,
+          "final_score": 0.47714285714285715
+        },
+        {
+          "text_vi": "Tự nói: 'Tôi cần luyện ném tự do'. Suy nghĩ: 'Phòng tập tối nay đông đúc'",
+          "vi_units": 16,
+          "sem_score": 0.82,
+          "dur_error": 0.5428571428571428,
+          "flu_penalty": 0.0,
+          "final_score": 0.4942857142857143
+        }
+      ],
+      "context_used": {
+        "previous_context": "- [39.5s - 57.7s] But decades of psychology research show that talking to yourself is completely normal. In fact, most if not all of us engage in some form of self-talk every single day. So why do we talk to ourselves? And does what we say matter?\n- [58.3s - 76.3s] Self-talk refers to the narration inside your head, sometimes called inner speech. It differs from mental imagery, recalling facts and figures. Specifically, psychologists define self-talk as verbalized thoughts directed toward yourself or some facet of your life.",
+        "next_context": "- [87.1s - 95.4s] I'll come back tomorrow. And while most self-talk in adults tends to be silent, speaking to yourself out loud also falls into this category.\n- [96.0s - 113.0s] In fact, psychologists believe our first experiences with self-talk are mostly vocal, as children often speak to themselves out loud as they play. In the 1930s, Russian psychologist Lev Vygotsky hypothesized that this kind of speech was actually key to development.",
+        "global_context_preview": "**CONTEXT PACK**  \n\n1. **Chủ đề chính của bài**: Tự nói với bản thân và ảnh hưởng tâm lý của nó trong đời sống hàng ngày.  \n\n2. **Bối cảnh / tình huống**: Bài giảng tâm lý học giải thích hiện tượng tự nói với bản thân từ góc độ khoa học, kèm ví dụ thực tế và cách điều chỉnh để cải thiện tâm trạng.  \n\n3. **Nhân vật, ngôi xưng hô, quan hệ**:  \n   - Người nói (ngôi thứ nhất: \"tôi\"), khán giả (ngôi thứ ba), bản thân (người nói).  \n   - Lev Vygotsky (triết gia tâm lý học Nga), CBT (trị liệu hành vi nhận thức).  \n\n4. **Văn phong nên dùng khi dịch sang tiếng Việt**: Ngôn ngữ tự nhiên, gần gũi, mạch lạc, tránh thuật ngữ chuyên sâu nhưng đảm bảo độ chính xác khoa học. Sử dụng câu ngắn, phù hợp phong cách TED Talk.  \n\n5. **Các thuật ngữ, cụm từ, tên riêng quan trọng cần dịch nhất quán**:  \n   - Self"
+      }
+    },
+    {
+      "segment_id": 10,
+      "source_text": "I'll come back tomorrow. And while most self-talk in adults tends to be silent, speaking to yourself out loud also falls into this category.",
+      "start_time": 87.1,
+      "end_time": 95.4,
+      "duration": 8.3,
+      "pred_len_vi": 35,
+      "max_vi_final": 36,
+      "best_translation": "Tôi sẽ quay lại ngày mai. Tự nói của người lớn thường im lặng, nhưng nói to với bản thân cũng thuộc nhóm này.",
+      "best_score": 0.575,
+      "candidates": [
+        {
+          "text_vi": "Tôi quay lại ngày mai. Tự nói của người lớn thường im lặng, nhưng nói to với bản thân cũng thuộc loại này.",
+          "vi_units": 23,
+          "sem_score": 0.82,
+          "dur_error": 0.3611111111111111,
+          "flu_penalty": 0.15,
+          "final_score": 0.5583333333333332
+        },
+        {
+          "text_vi": "Hôm mai tôi quay lại. Tự nói với bản thân người lớn thường im lặng, nói to ra cũng là một dạng.",
+          "vi_units": 22,
+          "sem_score": 0.82,
+          "dur_error": 0.3888888888888889,
+          "flu_penalty": 0.15,
+          "final_score": 0.5416666666666666
+        },
+        {
+          "text_vi": "Tôi sẽ quay lại ngày mai. Tự nói của người lớn thường im lặng, nhưng nói to với bản thân cũng thuộc nhóm này.",
+          "vi_units": 24,
+          "sem_score": 0.82,
+          "dur_error": 0.3333333333333333,
+          "flu_penalty": 0.15,
+          "final_score": 0.575
+        }
+      ],
+      "context_used": {
+        "previous_context": "- [58.3s - 76.3s] Self-talk refers to the narration inside your head, sometimes called inner speech. It differs from mental imagery, recalling facts and figures. Specifically, psychologists define self-talk as verbalized thoughts directed toward yourself or some facet of your life.\n- [77.2s - 86.8s] This includes personal conversations like, I need to work on my free throw. But it also includes reflections you have throughout the day, like, the gym's crowded tonight.",
+        "next_context": "- [96.0s - 113.0s] In fact, psychologists believe our first experiences with self-talk are mostly vocal, as children often speak to themselves out loud as they play. In the 1930s, Russian psychologist Lev Vygotsky hypothesized that this kind of speech was actually key to development.\n- [113.3s - 120.4s] By repeating conversations they've had with adults, children practice managing their behaviors and emotions on their own.",
+        "global_context_preview": "**CONTEXT PACK**  \n\n1. **Chủ đề chính của bài**: Tự nói với bản thân và ảnh hưởng tâm lý của nó trong đời sống hàng ngày.  \n\n2. **Bối cảnh / tình huống**: Bài giảng tâm lý học giải thích hiện tượng tự nói với bản thân từ góc độ khoa học, kèm ví dụ thực tế và cách điều chỉnh để cải thiện tâm trạng.  \n\n3. **Nhân vật, ngôi xưng hô, quan hệ**:  \n   - Người nói (ngôi thứ nhất: \"tôi\"), khán giả (ngôi thứ ba), bản thân (người nói).  \n   - Lev Vygotsky (triết gia tâm lý học Nga), CBT (trị liệu hành vi nhận thức).  \n\n4. **Văn phong nên dùng khi dịch sang tiếng Việt**: Ngôn ngữ tự nhiên, gần gũi, mạch lạc, tránh thuật ngữ chuyên sâu nhưng đảm bảo độ chính xác khoa học. Sử dụng câu ngắn, phù hợp phong cách TED Talk.  \n\n5. **Các thuật ngữ, cụm từ, tên riêng quan trọng cần dịch nhất quán**:  \n   - Self"
+      }
+    },
+    {
+      "segment_id": 11,
+      "source_text": "In fact, psychologists believe our first experiences with self-talk are mostly vocal, as children often speak to themselves out loud as they play. In the 1930s, Russian psychologist Lev Vygotsky hypothesized that this kind of speech was actually key to development.",
+      "start_time": 96.0,
+      "end_time": 113.0,
+      "duration": 17.0,
+      "pred_len_vi": 55,
+      "max_vi_final": 56,
+      "best_translation": "**\"Thực tế, tự nói với bản thân đầu tiên của chúng ta chủ yếu là nói to khi trẻ em chơi. Nhà tâm lý học Nga Lev Vygotsky năm 1930 cho rằng đây là chìa khóa phát triển.\"**",
+      "best_score": 0.5821428571428571,
+      "candidates": [
+        {
+          "text_vi": "Dưới đây là ba phiên bản dịch ngắn gọn, đảm bảo mỗi phiên bản có **≤56 âm** (tính theo chữ và dấu câu):",
+          "vi_units": 23,
+          "sem_score": 0.82,
+          "dur_error": 0.5892857142857143,
+          "flu_penalty": 0.15,
+          "final_score": 0.4214285714285714
+        },
+        {
+          "text_vi": "**\"Thực tế, tự nói với bản thân đầu tiên của chúng ta chủ yếu là nói to khi trẻ em chơi. Nhà tâm lý học Nga Lev Vygotsky năm 1930 cho rằng đây là chìa khóa phát triển.\"**",
+          "vi_units": 38,
+          "sem_score": 0.82,
+          "dur_error": 0.32142857142857145,
+          "flu_penalty": 0.15,
+          "final_score": 0.5821428571428571
+        },
+        {
+          "text_vi": "(36 âm)*",
+          "vi_units": 2,
+          "sem_score": 0.45,
+          "dur_error": 0.9642857142857143,
+          "flu_penalty": 0.2,
+          "final_score": -0.1885714285714285
+        }
+      ],
+      "context_used": {
+        "previous_context": "- [77.2s - 86.8s] This includes personal conversations like, I need to work on my free throw. But it also includes reflections you have throughout the day, like, the gym's crowded tonight.\n- [87.1s - 95.4s] I'll come back tomorrow. And while most self-talk in adults tends to be silent, speaking to yourself out loud also falls into this category.",
+        "next_context": "- [113.3s - 120.4s] By repeating conversations they've had with adults, children practice managing their behaviors and emotions on their own.\n- [120.7s - 137.0s] Then, as they grow older, this outward self-talk tends to become internalized, morphing into a private inner dialogue. We know this internal self-talk is important and can help you plan, work through difficult situations and even motivate you throughout the day.",
+        "global_context_preview": "**CONTEXT PACK**  \n\n1. **Chủ đề chính của bài**: Tự nói với bản thân và ảnh hưởng tâm lý của nó trong đời sống hàng ngày.  \n\n2. **Bối cảnh / tình huống**: Bài giảng tâm lý học giải thích hiện tượng tự nói với bản thân từ góc độ khoa học, kèm ví dụ thực tế và cách điều chỉnh để cải thiện tâm trạng.  \n\n3. **Nhân vật, ngôi xưng hô, quan hệ**:  \n   - Người nói (ngôi thứ nhất: \"tôi\"), khán giả (ngôi thứ ba), bản thân (người nói).  \n   - Lev Vygotsky (triết gia tâm lý học Nga), CBT (trị liệu hành vi nhận thức).  \n\n4. **Văn phong nên dùng khi dịch sang tiếng Việt**: Ngôn ngữ tự nhiên, gần gũi, mạch lạc, tránh thuật ngữ chuyên sâu nhưng đảm bảo độ chính xác khoa học. Sử dụng câu ngắn, phù hợp phong cách TED Talk.  \n\n5. **Các thuật ngữ, cụm từ, tên riêng quan trọng cần dịch nhất quán**:  \n   - Self"
+      }
+    },
+    {
+      "segment_id": 12,
+      "source_text": "By repeating conversations they've had with adults, children practice managing their behaviors and emotions on their own.",
+      "start_time": 113.3,
+      "end_time": 120.4,
+      "duration": 7.1,
+      "pred_len_vi": 21,
+      "max_vi_final": 22,
+      "best_translation": "Trẻ em tự luyện điều chỉnh hành vi và cảm xúc bằng cách lặp lại cuộc trò chuyện với người lớn.",
+      "best_score": 0.7927272727272727,
+      "candidates": [
+        {
+          "text_vi": "Trẻ em tự luyện điều chỉnh hành vi và cảm xúc bằng cách lặp lại cuộc trò chuyện với người lớn.",
+          "vi_units": 21,
+          "sem_score": 0.82,
+          "dur_error": 0.045454545454545456,
+          "flu_penalty": 0.0,
+          "final_score": 0.7927272727272727
+        },
+        {
+          "text_vi": "Trẻ em tự mình luyện điều chỉnh hành vi và cảm xúc qua việc lặp lại cuộc trò chuyện với người lớn.",
+          "vi_units": 22,
+          "sem_score": 0.82,
+          "dur_error": 0.0,
+          "flu_penalty": 0.15,
+          "final_score": 0.7749999999999999
+        },
+        {
+          "text_vi": "Trẻ em luyện quản lý hành vi và cảm xúc bằng cách lặp lại cuộc trò chuyện với người lớn.",
+          "vi_units": 20,
+          "sem_score": 0.82,
+          "dur_error": 0.09090909090909091,
+          "flu_penalty": 0.0,
+          "final_score": 0.7654545454545454
+        }
+      ],
+      "context_used": {
+        "previous_context": "- [87.1s - 95.4s] I'll come back tomorrow. And while most self-talk in adults tends to be silent, speaking to yourself out loud also falls into this category.\n- [96.0s - 113.0s] In fact, psychologists believe our first experiences with self-talk are mostly vocal, as children often speak to themselves out loud as they play. In the 1930s, Russian psychologist Lev Vygotsky hypothesized that this kind of speech was actually key to development.",
+        "next_context": "- [120.7s - 137.0s] Then, as they grow older, this outward self-talk tends to become internalized, morphing into a private inner dialogue. We know this internal self-talk is important and can help you plan, work through difficult situations and even motivate you throughout the day.\n- [137.3s - 172.5s] But studying self-talk can be difficult. It relies on study subjects clearly tracking a behavior that's spontaneous and often done without conscious control. For this reason, scientists are still working to answer basic questions like, why do some people self-talk more than others? What areas of the brain are activated during self-talk? And how does this activation differ from normal conversation? One thing we know for certain, however, is that what you say in these conversations can have real impact on your attitude and performance.",
+        "global_context_preview": "**CONTEXT PACK**  \n\n1. **Chủ đề chính của bài**: Tự nói với bản thân và ảnh hưởng tâm lý của nó trong đời sống hàng ngày.  \n\n2. **Bối cảnh / tình huống**: Bài giảng tâm lý học giải thích hiện tượng tự nói với bản thân từ góc độ khoa học, kèm ví dụ thực tế và cách điều chỉnh để cải thiện tâm trạng.  \n\n3. **Nhân vật, ngôi xưng hô, quan hệ**:  \n   - Người nói (ngôi thứ nhất: \"tôi\"), khán giả (ngôi thứ ba), bản thân (người nói).  \n   - Lev Vygotsky (triết gia tâm lý học Nga), CBT (trị liệu hành vi nhận thức).  \n\n4. **Văn phong nên dùng khi dịch sang tiếng Việt**: Ngôn ngữ tự nhiên, gần gũi, mạch lạc, tránh thuật ngữ chuyên sâu nhưng đảm bảo độ chính xác khoa học. Sử dụng câu ngắn, phù hợp phong cách TED Talk.  \n\n5. **Các thuật ngữ, cụm từ, tên riêng quan trọng cần dịch nhất quán**:  \n   - Self"
+      }
+    },
+    {
+      "segment_id": 13,
+      "source_text": "Then, as they grow older, this outward self-talk tends to become internalized, morphing into a private inner dialogue. We know this internal self-talk is important and can help you plan, work through difficult situations and even motivate you throughout the day.",
+      "start_time": 120.7,
+      "end_time": 137.0,
+      "duration": 16.3,
+      "pred_len_vi": 58,
+      "max_vi_final": 59,
+      "best_translation": "Khi lớn lên, tự nói với bản thân chuyển thành ngôn ngữ nội tâm riêng. Ngôn ngữ nội tâm này giúp bạn lên kế hoạch, vượt qua khó khăn và động viên cả ngày.",
+      "best_score": 0.5207627118644067,
+      "candidates": [
+        {
+          "text_vi": "Khi lớn lên, tự nói với bản thân chuyển thành ngôn ngữ nội tâm riêng. Ngôn ngữ nội tâm này giúp bạn lên kế hoạch, vượt qua khó khăn và động viên cả ngày.",
+          "vi_units": 34,
+          "sem_score": 0.82,
+          "dur_error": 0.423728813559322,
+          "flu_penalty": 0.15,
+          "final_score": 0.5207627118644067
+        },
+        {
+          "text_vi": "Khi trưởng thành, tự nói với bản thân dần biến thành ngôn ngữ nội tâm riêng. Điều này giúp bạn lên kế hoạch, giải quyết khó khăn và tự động viên suốt ngày.",
+          "vi_units": 33,
+          "sem_score": 0.82,
+          "dur_error": 0.4406779661016949,
+          "flu_penalty": 0.15,
+          "final_score": 0.510593220338983
+        },
+        {
+          "text_vi": "Khi lớn lên, tự nói với bản thân chuyển thành ngôn ngữ nội tâm riêng. Nó giúp bạn lập kế hoạch, vượt qua thử thách và động viên cả ngày.",
+          "vi_units": 30,
+          "sem_score": 0.82,
+          "dur_error": 0.4915254237288136,
+          "flu_penalty": 0.15,
+          "final_score": 0.4800847457627118
+        }
+      ],
+      "context_used": {
+        "previous_context": "- [96.0s - 113.0s] In fact, psychologists believe our first experiences with self-talk are mostly vocal, as children often speak to themselves out loud as they play. In the 1930s, Russian psychologist Lev Vygotsky hypothesized that this kind of speech was actually key to development.\n- [113.3s - 120.4s] By repeating conversations they've had with adults, children practice managing their behaviors and emotions on their own.",
+        "next_context": "- [137.3s - 172.5s] But studying self-talk can be difficult. It relies on study subjects clearly tracking a behavior that's spontaneous and often done without conscious control. For this reason, scientists are still working to answer basic questions like, why do some people self-talk more than others? What areas of the brain are activated during self-talk? And how does this activation differ from normal conversation? One thing we know for certain, however, is that what you say in these conversations can have real impact on your attitude and performance.\n- [173.3s - 194.7s] Engaging in self-talk that's instructional or motivational has been shown to increase focus, boost self-esteem, and help tackle everyday tasks. For example, one study of collegiate tennis players found that incorporating instructional self-talk into practice increased their concentration and accuracy.",
+        "global_context_preview": "**CONTEXT PACK**  \n\n1. **Chủ đề chính của bài**: Tự nói với bản thân và ảnh hưởng tâm lý của nó trong đời sống hàng ngày.  \n\n2. **Bối cảnh / tình huống**: Bài giảng tâm lý học giải thích hiện tượng tự nói với bản thân từ góc độ khoa học, kèm ví dụ thực tế và cách điều chỉnh để cải thiện tâm trạng.  \n\n3. **Nhân vật, ngôi xưng hô, quan hệ**:  \n   - Người nói (ngôi thứ nhất: \"tôi\"), khán giả (ngôi thứ ba), bản thân (người nói).  \n   - Lev Vygotsky (triết gia tâm lý học Nga), CBT (trị liệu hành vi nhận thức).  \n\n4. **Văn phong nên dùng khi dịch sang tiếng Việt**: Ngôn ngữ tự nhiên, gần gũi, mạch lạc, tránh thuật ngữ chuyên sâu nhưng đảm bảo độ chính xác khoa học. Sử dụng câu ngắn, phù hợp phong cách TED Talk.  \n\n5. **Các thuật ngữ, cụm từ, tên riêng quan trọng cần dịch nhất quán**:  \n   - Self"
+      }
+    },
+    {
+      "segment_id": 14,
+      "source_text": "But studying self-talk can be difficult. It relies on study subjects clearly tracking a behavior that's spontaneous and often done without conscious control. For this reason, scientists are still working to answer basic questions like, why do some people self-talk more than others? What areas of the brain are activated during self-talk? And how does this activation differ from normal conversation? One thing we know for certain, however, is that what you say in these conversations can have real impact on your attitude and performance.",
+      "start_time": 137.3,
+      "end_time": 172.5,
+      "duration": 35.2,
+      "pred_len_vi": 128,
+      "max_vi_final": 129,
+      "best_translation": "Nhưng nghiên cứu tự nói với bản thân khá phức tạp. Người tham gia phải theo dõi hành vi tự phát không có ý thức kiểm soát. Do đó, các nhà khoa học vẫn đang tìm hiểu những câu hỏi cơ bản: Tại sao một số người tự nói nhiều hơn? Những vùng não hoạt động khi tự nói? Và hoạt động này khác biệt như thế nào so với trò chuyện bình thường? Tuy nhiên, điều chắc chắn là những gì bạn nói có thể ảnh hưởng thực sự đến thái độ và hiệu suất.",
+      "best_score": 0.6215116279069767,
+      "candidates": [
+        {
+          "text_vi": "Dưới đây là ba phiên bản dịch tiếng Việt ngắn gọn, tự nhiên và phù hợp với yêu cầu của bạn (mỗi phiên bản dưới 129 âm tiết):",
+          "vi_units": 28,
+          "sem_score": 0.82,
+          "dur_error": 0.7829457364341085,
+          "flu_penalty": 0.15,
+          "final_score": 0.3052325581395349
+        },
+        {
+          "text_vi": "**Phiên bản 1**:",
+          "vi_units": 3,
+          "sem_score": 0.45,
+          "dur_error": 0.9767441860465116,
+          "flu_penalty": 0.2,
+          "final_score": -0.19604651162790687
+        },
+        {
+          "text_vi": "Nhưng nghiên cứu tự nói với bản thân khá phức tạp. Người tham gia phải theo dõi hành vi tự phát không có ý thức kiểm soát. Do đó, các nhà khoa học vẫn đang tìm hiểu những câu hỏi cơ bản: Tại sao một số người tự nói nhiều hơn? Những vùng não hoạt động khi tự nói? Và hoạt động này khác biệt như thế nào so với trò chuyện bình thường? Tuy nhiên, điều chắc chắn là những gì bạn nói có thể ảnh hưởng thực sự đến thái độ và hiệu suất.",
+          "vi_units": 96,
+          "sem_score": 0.82,
+          "dur_error": 0.2558139534883721,
+          "flu_penalty": 0.15,
+          "final_score": 0.6215116279069767
+        }
+      ],
+      "context_used": {
+        "previous_context": "- [113.3s - 120.4s] By repeating conversations they've had with adults, children practice managing their behaviors and emotions on their own.\n- [120.7s - 137.0s] Then, as they grow older, this outward self-talk tends to become internalized, morphing into a private inner dialogue. We know this internal self-talk is important and can help you plan, work through difficult situations and even motivate you throughout the day.",
+        "next_context": "- [173.3s - 194.7s] Engaging in self-talk that's instructional or motivational has been shown to increase focus, boost self-esteem, and help tackle everyday tasks. For example, one study of collegiate tennis players found that incorporating instructional self-talk into practice increased their concentration and accuracy.\n- [195.1s - 218.8s] And just as chatting to a friend can help decrease stress, speaking directly to yourself may also help you regulate your emotions. Distanced self-talk is when you talk to yourself, as if in conversation with another person. So rather than, I'm gonna crush this exam, you might think, Caleb, you are prepared for this test.",
+        "global_context_preview": "**CONTEXT PACK**  \n\n1. **Chủ đề chính của bài**: Tự nói với bản thân và ảnh hưởng tâm lý của nó trong đời sống hàng ngày.  \n\n2. **Bối cảnh / tình huống**: Bài giảng tâm lý học giải thích hiện tượng tự nói với bản thân từ góc độ khoa học, kèm ví dụ thực tế và cách điều chỉnh để cải thiện tâm trạng.  \n\n3. **Nhân vật, ngôi xưng hô, quan hệ**:  \n   - Người nói (ngôi thứ nhất: \"tôi\"), khán giả (ngôi thứ ba), bản thân (người nói).  \n   - Lev Vygotsky (triết gia tâm lý học Nga), CBT (trị liệu hành vi nhận thức).  \n\n4. **Văn phong nên dùng khi dịch sang tiếng Việt**: Ngôn ngữ tự nhiên, gần gũi, mạch lạc, tránh thuật ngữ chuyên sâu nhưng đảm bảo độ chính xác khoa học. Sử dụng câu ngắn, phù hợp phong cách TED Talk.  \n\n5. **Các thuật ngữ, cụm từ, tên riêng quan trọng cần dịch nhất quán**:  \n   - Self"
+      }
+    },
+    {
+      "segment_id": 15,
+      "source_text": "Engaging in self-talk that's instructional or motivational has been shown to increase focus, boost self-esteem, and help tackle everyday tasks. For example, one study of collegiate tennis players found that incorporating instructional self-talk into practice increased their concentration and accuracy.",
+      "start_time": 173.3,
+      "end_time": 194.7,
+      "duration": 21.4,
+      "pred_len_vi": 58,
+      "max_vi_final": 59,
+      "best_translation": "Đây là một câu thử nghiệm để thực hành dịch thuật.",
+      "best_score": 0.33186440677966095,
+      "candidates": [
+        {
+          "text_vi": "Đây là một câu thử nghiệm để thực hành dịch thuật.",
+          "vi_units": 11,
+          "sem_score": 0.82,
+          "dur_error": 0.8135593220338984,
+          "flu_penalty": 0.0,
+          "final_score": 0.33186440677966095
+        },
+        {
+          "text_vi": "Đây là câu mẫu để luyện dịch.",
+          "vi_units": 7,
+          "sem_score": 0.82,
+          "dur_error": 0.8813559322033898,
+          "flu_penalty": 0.0,
+          "final_score": 0.29118644067796606
+        },
+        {
+          "text_vi": "Đây là câu văn để thực hành dịch tiếng Anh.",
+          "vi_units": 10,
+          "sem_score": 0.82,
+          "dur_error": 0.8305084745762712,
+          "flu_penalty": 0.0,
+          "final_score": 0.32169491525423727
+        }
+      ],
+      "context_used": {
+        "previous_context": "- [120.7s - 137.0s] Then, as they grow older, this outward self-talk tends to become internalized, morphing into a private inner dialogue. We know this internal self-talk is important and can help you plan, work through difficult situations and even motivate you throughout the day.\n- [137.3s - 172.5s] But studying self-talk can be difficult. It relies on study subjects clearly tracking a behavior that's spontaneous and often done without conscious control. For this reason, scientists are still working to answer basic questions like, why do some people self-talk more than others? What areas of the brain are activated during self-talk? And how does this activation differ from normal conversation? One thing we know for certain, however, is that what you say in these conversations can have real impact on your attitude and performance.",
+        "next_context": "- [195.1s - 218.8s] And just as chatting to a friend can help decrease stress, speaking directly to yourself may also help you regulate your emotions. Distanced self-talk is when you talk to yourself, as if in conversation with another person. So rather than, I'm gonna crush this exam, you might think, Caleb, you are prepared for this test.\n- [219.0s - 230.3s] One study found that this kind of self-talk was especially beneficial for reducing stress when engaging in anxiety-inducing tasks, such as meeting new people or public speaking.",
+        "global_context_preview": "**CONTEXT PACK**  \n\n1. **Chủ đề chính của bài**: Tự nói với bản thân và ảnh hưởng tâm lý của nó trong đời sống hàng ngày.  \n\n2. **Bối cảnh / tình huống**: Bài giảng tâm lý học giải thích hiện tượng tự nói với bản thân từ góc độ khoa học, kèm ví dụ thực tế và cách điều chỉnh để cải thiện tâm trạng.  \n\n3. **Nhân vật, ngôi xưng hô, quan hệ**:  \n   - Người nói (ngôi thứ nhất: \"tôi\"), khán giả (ngôi thứ ba), bản thân (người nói).  \n   - Lev Vygotsky (triết gia tâm lý học Nga), CBT (trị liệu hành vi nhận thức).  \n\n4. **Văn phong nên dùng khi dịch sang tiếng Việt**: Ngôn ngữ tự nhiên, gần gũi, mạch lạc, tránh thuật ngữ chuyên sâu nhưng đảm bảo độ chính xác khoa học. Sử dụng câu ngắn, phù hợp phong cách TED Talk.  \n\n5. **Các thuật ngữ, cụm từ, tên riêng quan trọng cần dịch nhất quán**:  \n   - Self"
+      }
+    },
+    {
+      "segment_id": 16,
+      "source_text": "And just as chatting to a friend can help decrease stress, speaking directly to yourself may also help you regulate your emotions. Distanced self-talk is when you talk to yourself, as if in conversation with another person. So rather than, I'm gonna crush this exam, you might think, Caleb, you are prepared for this test.",
+      "start_time": 195.1,
+      "end_time": 218.8,
+      "duration": 23.7,
+      "pred_len_vi": 76,
+      "max_vi_final": 77,
+      "best_translation": "Giống như trò chuyện với bạn bè giảm căng thẳng, tự nói với bản thân cũng giúp bạn điều chỉnh cảm xúc. Tự nói với bản thân như trò chuyện với người khác là khi bạn thay vì nói 'Tôi sẽ làm hỏng bài thi', hãy nghĩ: 'Caleb, bạn đã chuẩn bị kỹ!'",
+      "best_score": 0.587987012987013,
+      "candidates": [
+        {
+          "text_vi": "Giống như trò chuyện với bạn bè giảm căng thẳng, tự nói với bản thân cũng giúp bạn điều chỉnh cảm xúc. Tự nói với bản thân như trò chuyện với người khác là khi bạn thay vì nói 'Tôi sẽ làm hỏng bài thi', hãy nghĩ: 'Caleb, bạn đã chuẩn bị kỹ!'",
+          "vi_units": 53,
+          "sem_score": 0.82,
+          "dur_error": 0.3116883116883117,
+          "flu_penalty": 0.15,
+          "final_score": 0.587987012987013
+        },
+        {
+          "text_vi": "Trò chuyện với bạn bè giảm căng thẳng, tự nói với bản thân giúp bạn điều chỉnh cảm xúc. Khi tự nói như trò chuyện với người khác, hãy thay thế 'Tôi sẽ làm hỏng bài thi' bằng 'Caleb, bạn đã chuẩn bị kỹ!'",
+          "vi_units": 44,
+          "sem_score": 0.82,
+          "dur_error": 0.42857142857142855,
+          "flu_penalty": 0.15,
+          "final_score": 0.5178571428571428
+        },
+        {
+          "text_vi": "Tự nói với bản thân như trò chuyện với người khác giúp bạn điều chỉnh cảm xúc. Thay vì 'Tôi sẽ làm hỏng bài thi', hãy nghĩ: 'Caleb, bạn đã chuẩn bị kỹ rồi!'",
+          "vi_units": 34,
+          "sem_score": 0.82,
+          "dur_error": 0.5584415584415584,
+          "flu_penalty": 0.15,
+          "final_score": 0.43993506493506496
+        }
+      ],
+      "context_used": {
+        "previous_context": "- [137.3s - 172.5s] But studying self-talk can be difficult. It relies on study subjects clearly tracking a behavior that's spontaneous and often done without conscious control. For this reason, scientists are still working to answer basic questions like, why do some people self-talk more than others? What areas of the brain are activated during self-talk? And how does this activation differ from normal conversation? One thing we know for certain, however, is that what you say in these conversations can have real impact on your attitude and performance.\n- [173.3s - 194.7s] Engaging in self-talk that's instructional or motivational has been shown to increase focus, boost self-esteem, and help tackle everyday tasks. For example, one study of collegiate tennis players found that incorporating instructional self-talk into practice increased their concentration and accuracy.",
+        "next_context": "- [219.0s - 230.3s] One study found that this kind of self-talk was especially beneficial for reducing stress when engaging in anxiety-inducing tasks, such as meeting new people or public speaking.\n- [230.6s - 244.5s] But where positive self-talk can help you, negative self-talk can harm you. Most people are critical of themselves occasionally. But when this behavior gets too frequent or excessively negative, it can become toxic.",
+        "global_context_preview": "**CONTEXT PACK**  \n\n1. **Chủ đề chính của bài**: Tự nói với bản thân và ảnh hưởng tâm lý của nó trong đời sống hàng ngày.  \n\n2. **Bối cảnh / tình huống**: Bài giảng tâm lý học giải thích hiện tượng tự nói với bản thân từ góc độ khoa học, kèm ví dụ thực tế và cách điều chỉnh để cải thiện tâm trạng.  \n\n3. **Nhân vật, ngôi xưng hô, quan hệ**:  \n   - Người nói (ngôi thứ nhất: \"tôi\"), khán giả (ngôi thứ ba), bản thân (người nói).  \n   - Lev Vygotsky (triết gia tâm lý học Nga), CBT (trị liệu hành vi nhận thức).  \n\n4. **Văn phong nên dùng khi dịch sang tiếng Việt**: Ngôn ngữ tự nhiên, gần gũi, mạch lạc, tránh thuật ngữ chuyên sâu nhưng đảm bảo độ chính xác khoa học. Sử dụng câu ngắn, phù hợp phong cách TED Talk.  \n\n5. **Các thuật ngữ, cụm từ, tên riêng quan trọng cần dịch nhất quán**:  \n   - Self"
+      }
+    },
+    {
+      "segment_id": 17,
+      "source_text": "One study found that this kind of self-talk was especially beneficial for reducing stress when engaging in anxiety-inducing tasks, such as meeting new people or public speaking.",
+      "start_time": 219.0,
+      "end_time": 230.3,
+      "duration": 11.3,
+      "pred_len_vi": 41,
+      "max_vi_final": 42,
+      "best_translation": "Một nghiên cứu cho thấy, tự nói với bản thân như trò chuyện giúp giảm căng thẳng khi phải đối mặt với các hoạt động gây lo âu như gặp gỡ người mới hoặc phát biểu công khai.",
+      "best_score": 0.7178571428571427,
+      "candidates": [
+        {
+          "text_vi": "Một nghiên cứu cho thấy, tự nói với bản thân như trò chuyện giúp giảm căng thẳng khi thực hiện các việc gây lo âu như gặp gỡ người mới hoặc phát biểu công khai.",
+          "vi_units": 35,
+          "sem_score": 0.82,
+          "dur_error": 0.16666666666666666,
+          "flu_penalty": 0.15,
+          "final_score": 0.6749999999999999
+        },
+        {
+          "text_vi": "Nghiên cứu chỉ ra, kiểu tự nói với bản thân như trò chuyện cực kỳ hiệu quả trong việc giảm căng thẳng khi đối mặt với tình huống gây lo âu.",
+          "vi_units": 31,
+          "sem_score": 0.82,
+          "dur_error": 0.2619047619047619,
+          "flu_penalty": 0.15,
+          "final_score": 0.6178571428571428
+        },
+        {
+          "text_vi": "Một nghiên cứu cho thấy, tự nói với bản thân như trò chuyện giúp giảm căng thẳng khi phải đối mặt với các hoạt động gây lo âu như gặp gỡ người mới hoặc phát biểu công khai.",
+          "vi_units": 38,
+          "sem_score": 0.82,
+          "dur_error": 0.09523809523809523,
+          "flu_penalty": 0.15,
+          "final_score": 0.7178571428571427
+        }
+      ],
+      "context_used": {
+        "previous_context": "- [173.3s - 194.7s] Engaging in self-talk that's instructional or motivational has been shown to increase focus, boost self-esteem, and help tackle everyday tasks. For example, one study of collegiate tennis players found that incorporating instructional self-talk into practice increased their concentration and accuracy.\n- [195.1s - 218.8s] And just as chatting to a friend can help decrease stress, speaking directly to yourself may also help you regulate your emotions. Distanced self-talk is when you talk to yourself, as if in conversation with another person. So rather than, I'm gonna crush this exam, you might think, Caleb, you are prepared for this test.",
+        "next_context": "- [230.6s - 244.5s] But where positive self-talk can help you, negative self-talk can harm you. Most people are critical of themselves occasionally. But when this behavior gets too frequent or excessively negative, it can become toxic.\n- [245.0s - 259.5s] High levels of negative self-talk are often predictive of anxiety in children and adults. And those who constantly blame themselves for their problems and ruminate on those situations typically experience more intense feelings of depression.",
+        "global_context_preview": "**CONTEXT PACK**  \n\n1. **Chủ đề chính của bài**: Tự nói với bản thân và ảnh hưởng tâm lý của nó trong đời sống hàng ngày.  \n\n2. **Bối cảnh / tình huống**: Bài giảng tâm lý học giải thích hiện tượng tự nói với bản thân từ góc độ khoa học, kèm ví dụ thực tế và cách điều chỉnh để cải thiện tâm trạng.  \n\n3. **Nhân vật, ngôi xưng hô, quan hệ**:  \n   - Người nói (ngôi thứ nhất: \"tôi\"), khán giả (ngôi thứ ba), bản thân (người nói).  \n   - Lev Vygotsky (triết gia tâm lý học Nga), CBT (trị liệu hành vi nhận thức).  \n\n4. **Văn phong nên dùng khi dịch sang tiếng Việt**: Ngôn ngữ tự nhiên, gần gũi, mạch lạc, tránh thuật ngữ chuyên sâu nhưng đảm bảo độ chính xác khoa học. Sử dụng câu ngắn, phù hợp phong cách TED Talk.  \n\n5. **Các thuật ngữ, cụm từ, tên riêng quan trọng cần dịch nhất quán**:  \n   - Self"
+      }
+    },
+    {
+      "segment_id": 18,
+      "source_text": "But where positive self-talk can help you, negative self-talk can harm you. Most people are critical of themselves occasionally. But when this behavior gets too frequent or excessively negative, it can become toxic.",
+      "start_time": 230.6,
+      "end_time": 244.5,
+      "duration": 13.9,
+      "pred_len_vi": 47,
+      "max_vi_final": 48,
+      "best_translation": "Tự nói động viên giúp bạn, tự nói tiêu cực gây hại. Hầu hết mọi người tự phê bình thỉnh thoảng. Khi hành vi này quá thường xuyên hoặc tiêu cực quá mức, nó có thể trở nên độc hại.",
+      "best_score": 0.6749999999999999,
+      "candidates": [
+        {
+          "text_vi": "Tự nói động viên giúp bạn, tự nói tiêu cực gây hại. Hầu hết mọi người tự phê bình thỉnh thoảng. Khi hành vi này quá thường xuyên hoặc tiêu cực quá mức, nó có thể trở nên độc hại.",
+          "vi_units": 40,
+          "sem_score": 0.82,
+          "dur_error": 0.16666666666666666,
+          "flu_penalty": 0.15,
+          "final_score": 0.6749999999999999
+        },
+        {
+          "text_vi": "Tự nói động viên giúp bạn, tự nói tiêu cực gây hại. Hầu hết mọi người tự phê bình thỉnh thoảng. Nếu hành vi này quá thường xuyên hoặc tiêu cực quá mức, nó sẽ gây hại.",
+          "vi_units": 37,
+          "sem_score": 0.82,
+          "dur_error": 0.22916666666666666,
+          "flu_penalty": 0.15,
+          "final_score": 0.6375
+        },
+        {
+          "text_vi": "Tự nói động viên giúp bạn, tự nói tiêu cực gây hại. Đa số người tự phê bình thỉnh thoảng. Khi hành vi này diễn ra quá nhiều hoặc tiêu cực quá mức, nó có thể trở nên độc hại.",
+          "vi_units": 40,
+          "sem_score": 0.82,
+          "dur_error": 0.16666666666666666,
+          "flu_penalty": 0.15,
+          "final_score": 0.6749999999999999
+        }
+      ],
+      "context_used": {
+        "previous_context": "- [195.1s - 218.8s] And just as chatting to a friend can help decrease stress, speaking directly to yourself may also help you regulate your emotions. Distanced self-talk is when you talk to yourself, as if in conversation with another person. So rather than, I'm gonna crush this exam, you might think, Caleb, you are prepared for this test.\n- [219.0s - 230.3s] One study found that this kind of self-talk was especially beneficial for reducing stress when engaging in anxiety-inducing tasks, such as meeting new people or public speaking.",
+        "next_context": "- [245.0s - 259.5s] High levels of negative self-talk are often predictive of anxiety in children and adults. And those who constantly blame themselves for their problems and ruminate on those situations typically experience more intense feelings of depression.\n- [260.1s - 271.5s] Today, there's a field of psychological treatment called cognitive behavioral therapy, or CBT, which is partially focused on regulating the tone of self-talk.",
+        "global_context_preview": "**CONTEXT PACK**  \n\n1. **Chủ đề chính của bài**: Tự nói với bản thân và ảnh hưởng tâm lý của nó trong đời sống hàng ngày.  \n\n2. **Bối cảnh / tình huống**: Bài giảng tâm lý học giải thích hiện tượng tự nói với bản thân từ góc độ khoa học, kèm ví dụ thực tế và cách điều chỉnh để cải thiện tâm trạng.  \n\n3. **Nhân vật, ngôi xưng hô, quan hệ**:  \n   - Người nói (ngôi thứ nhất: \"tôi\"), khán giả (ngôi thứ ba), bản thân (người nói).  \n   - Lev Vygotsky (triết gia tâm lý học Nga), CBT (trị liệu hành vi nhận thức).  \n\n4. **Văn phong nên dùng khi dịch sang tiếng Việt**: Ngôn ngữ tự nhiên, gần gũi, mạch lạc, tránh thuật ngữ chuyên sâu nhưng đảm bảo độ chính xác khoa học. Sử dụng câu ngắn, phù hợp phong cách TED Talk.  \n\n5. **Các thuật ngữ, cụm từ, tên riêng quan trọng cần dịch nhất quán**:  \n   - Self"
+      }
+    },
+    {
+      "segment_id": 19,
+      "source_text": "High levels of negative self-talk are often predictive of anxiety in children and adults. And those who constantly blame themselves for their problems and ruminate on those situations typically experience more intense feelings of depression.",
+      "start_time": 245.0,
+      "end_time": 259.5,
+      "duration": 14.5,
+      "pred_len_vi": 43,
+      "max_vi_final": 44,
+      "best_translation": "**\"Mức độ tự nói tiêu cực cao thường dự báo lo âu ở trẻ em và người lớn. Người tự trách mình, lặp lại suy nghĩ tiêu cực thường trầm cảm sâu sắc hơn.\"**",
+      "best_score": 0.6386363636363636,
+      "candidates": [
+        {
+          "text_vi": "Dưới đây là ba phiên bản dịch tự nhiên, phù hợp phong cách TED Talk và đảm bảo tổng số âm tiết không vượt quá 44:",
+          "vi_units": 26,
+          "sem_score": 0.82,
+          "dur_error": 0.4090909090909091,
+          "flu_penalty": 0.15,
+          "final_score": 0.5295454545454544
+        },
+        {
+          "text_vi": "**\"Mức độ tự nói tiêu cực cao thường dự báo lo âu ở trẻ em và người lớn. Người tự trách mình, lặp lại suy nghĩ tiêu cực thường trầm cảm sâu sắc hơn.\"**",
+          "vi_units": 34,
+          "sem_score": 0.82,
+          "dur_error": 0.22727272727272727,
+          "flu_penalty": 0.15,
+          "final_score": 0.6386363636363636
+        },
+        {
+          "text_vi": "(35 âm tiết)",
+          "vi_units": 3,
+          "sem_score": 0.45,
+          "dur_error": 0.9318181818181818,
+          "flu_penalty": 0.2,
+          "final_score": -0.16909090909090907
+        }
+      ],
+      "context_used": {
+        "previous_context": "- [219.0s - 230.3s] One study found that this kind of self-talk was especially beneficial for reducing stress when engaging in anxiety-inducing tasks, such as meeting new people or public speaking.\n- [230.6s - 244.5s] But where positive self-talk can help you, negative self-talk can harm you. Most people are critical of themselves occasionally. But when this behavior gets too frequent or excessively negative, it can become toxic.",
+        "next_context": "- [260.1s - 271.5s] Today, there's a field of psychological treatment called cognitive behavioral therapy, or CBT, which is partially focused on regulating the tone of self-talk.\n- [271.9s - 282.3s] Cognitive behavioral therapists often teach strategies to identify cycles of negative thoughts and replace them with neutral or more compassionate reflections.",
+        "global_context_preview": "**CONTEXT PACK**  \n\n1. **Chủ đề chính của bài**: Tự nói với bản thân và ảnh hưởng tâm lý của nó trong đời sống hàng ngày.  \n\n2. **Bối cảnh / tình huống**: Bài giảng tâm lý học giải thích hiện tượng tự nói với bản thân từ góc độ khoa học, kèm ví dụ thực tế và cách điều chỉnh để cải thiện tâm trạng.  \n\n3. **Nhân vật, ngôi xưng hô, quan hệ**:  \n   - Người nói (ngôi thứ nhất: \"tôi\"), khán giả (ngôi thứ ba), bản thân (người nói).  \n   - Lev Vygotsky (triết gia tâm lý học Nga), CBT (trị liệu hành vi nhận thức).  \n\n4. **Văn phong nên dùng khi dịch sang tiếng Việt**: Ngôn ngữ tự nhiên, gần gũi, mạch lạc, tránh thuật ngữ chuyên sâu nhưng đảm bảo độ chính xác khoa học. Sử dụng câu ngắn, phù hợp phong cách TED Talk.  \n\n5. **Các thuật ngữ, cụm từ, tên riêng quan trọng cần dịch nhất quán**:  \n   - Self"
+      }
+    },
+    {
+      "segment_id": 20,
+      "source_text": "Today, there's a field of psychological treatment called cognitive behavioral therapy, or CBT, which is partially focused on regulating the tone of self-talk.",
+      "start_time": 260.1,
+      "end_time": 271.5,
+      "duration": 11.4,
+      "pred_len_vi": 30,
+      "max_vi_final": 31,
+      "best_translation": "Hiện nay, trị liệu hành vi nhận thức (CBT) là lĩnh vực điều trị tâm lý phần nào điều chỉnh giọng điệu tự nói với bản thân.",
+      "best_score": 0.6975806451612903,
+      "candidates": [
+        {
+          "text_vi": "Hiện nay, trị liệu hành vi nhận thức (CBT) là lĩnh vực điều trị tâm lý phần nào điều chỉnh giọng điệu tự nói với bản thân.",
+          "vi_units": 27,
+          "sem_score": 0.82,
+          "dur_error": 0.12903225806451613,
+          "flu_penalty": 0.15,
+          "final_score": 0.6975806451612903
+        },
+        {
+          "text_vi": "Hiện nay, CBT - trị liệu hành vi nhận thức - điều chỉnh giọng điệu tự nói với bản thân.",
+          "vi_units": 18,
+          "sem_score": 0.82,
+          "dur_error": 0.41935483870967744,
+          "flu_penalty": 0.0,
+          "final_score": 0.5683870967741935
+        },
+        {
+          "text_vi": "Trị liệu hành vi nhận thức (CBT) phần nào điều chỉnh giọng điệu tự nói với bản thân.",
+          "vi_units": 18,
+          "sem_score": 0.82,
+          "dur_error": 0.41935483870967744,
+          "flu_penalty": 0.0,
+          "final_score": 0.5683870967741935
+        }
+      ],
+      "context_used": {
+        "previous_context": "- [230.6s - 244.5s] But where positive self-talk can help you, negative self-talk can harm you. Most people are critical of themselves occasionally. But when this behavior gets too frequent or excessively negative, it can become toxic.\n- [245.0s - 259.5s] High levels of negative self-talk are often predictive of anxiety in children and adults. And those who constantly blame themselves for their problems and ruminate on those situations typically experience more intense feelings of depression.",
+        "next_context": "- [271.9s - 282.3s] Cognitive behavioral therapists often teach strategies to identify cycles of negative thoughts and replace them with neutral or more compassionate reflections.\n- [282.5s - 287.0s] Over time, these tools can improve one's mental health.",
+        "global_context_preview": "**CONTEXT PACK**  \n\n1. **Chủ đề chính của bài**: Tự nói với bản thân và ảnh hưởng tâm lý của nó trong đời sống hàng ngày.  \n\n2. **Bối cảnh / tình huống**: Bài giảng tâm lý học giải thích hiện tượng tự nói với bản thân từ góc độ khoa học, kèm ví dụ thực tế và cách điều chỉnh để cải thiện tâm trạng.  \n\n3. **Nhân vật, ngôi xưng hô, quan hệ**:  \n   - Người nói (ngôi thứ nhất: \"tôi\"), khán giả (ngôi thứ ba), bản thân (người nói).  \n   - Lev Vygotsky (triết gia tâm lý học Nga), CBT (trị liệu hành vi nhận thức).  \n\n4. **Văn phong nên dùng khi dịch sang tiếng Việt**: Ngôn ngữ tự nhiên, gần gũi, mạch lạc, tránh thuật ngữ chuyên sâu nhưng đảm bảo độ chính xác khoa học. Sử dụng câu ngắn, phù hợp phong cách TED Talk.  \n\n5. **Các thuật ngữ, cụm từ, tên riêng quan trọng cần dịch nhất quán**:  \n   - Self"
+      }
+    },
+    {
+      "segment_id": 21,
+      "source_text": "Cognitive behavioral therapists often teach strategies to identify cycles of negative thoughts and replace them with neutral or more compassionate reflections.",
+      "start_time": 271.9,
+      "end_time": 282.3,
+      "duration": 10.4,
+      "pred_len_vi": 29,
+      "max_vi_final": 30,
+      "best_translation": "Chuyên gia trị liệu hành vi nhận thức hướng dẫn nhận diện chu kỳ suy nghĩ tiêu cực và thay thế bằng phản ứng trung lập, thấu cảm.",
+      "best_score": 0.7349999999999999,
+      "candidates": [
+        {
+          "text_vi": "Chuyên gia trị liệu hành vi nhận thức hướng dẫn nhận diện chu kỳ suy nghĩ tiêu cực và thay thế bằng phản ứng trung lập, thấu cảm.",
+          "vi_units": 28,
+          "sem_score": 0.82,
+          "dur_error": 0.06666666666666667,
+          "flu_penalty": 0.15,
+          "final_score": 0.7349999999999999
+        },
+        {
+          "text_vi": "Chuyên gia trị liệu hành vi nhận thức dạy cách phát hiện chu kỳ suy nghĩ tiêu cực, thay thế bằng phản ứng trung lập hoặc thấu cảm.",
+          "vi_units": 28,
+          "sem_score": 0.82,
+          "dur_error": 0.06666666666666667,
+          "flu_penalty": 0.15,
+          "final_score": 0.7349999999999999
+        },
+        {
+          "text_vi": "Chuyên gia CBT hướng dẫn phát hiện chu kỳ suy nghĩ tiêu cực và thay thế bằng phản ứng trung lập, thấu cảm.",
+          "vi_units": 23,
+          "sem_score": 0.82,
+          "dur_error": 0.23333333333333334,
+          "flu_penalty": 0.15,
+          "final_score": 0.6349999999999999
+        }
+      ],
+      "context_used": {
+        "previous_context": "- [245.0s - 259.5s] High levels of negative self-talk are often predictive of anxiety in children and adults. And those who constantly blame themselves for their problems and ruminate on those situations typically experience more intense feelings of depression.\n- [260.1s - 271.5s] Today, there's a field of psychological treatment called cognitive behavioral therapy, or CBT, which is partially focused on regulating the tone of self-talk.",
+        "next_context": "- [282.5s - 287.0s] Over time, these tools can improve one's mental health.\n- [287.4s - 293.1s] So the next time you find yourself chatting with yourself, remember to be kind.",
+        "global_context_preview": "**CONTEXT PACK**  \n\n1. **Chủ đề chính của bài**: Tự nói với bản thân và ảnh hưởng tâm lý của nó trong đời sống hàng ngày.  \n\n2. **Bối cảnh / tình huống**: Bài giảng tâm lý học giải thích hiện tượng tự nói với bản thân từ góc độ khoa học, kèm ví dụ thực tế và cách điều chỉnh để cải thiện tâm trạng.  \n\n3. **Nhân vật, ngôi xưng hô, quan hệ**:  \n   - Người nói (ngôi thứ nhất: \"tôi\"), khán giả (ngôi thứ ba), bản thân (người nói).  \n   - Lev Vygotsky (triết gia tâm lý học Nga), CBT (trị liệu hành vi nhận thức).  \n\n4. **Văn phong nên dùng khi dịch sang tiếng Việt**: Ngôn ngữ tự nhiên, gần gũi, mạch lạc, tránh thuật ngữ chuyên sâu nhưng đảm bảo độ chính xác khoa học. Sử dụng câu ngắn, phù hợp phong cách TED Talk.  \n\n5. **Các thuật ngữ, cụm từ, tên riêng quan trọng cần dịch nhất quán**:  \n   - Self"
+      }
+    },
+    {
+      "segment_id": 22,
+      "source_text": "Over time, these tools can improve one's mental health.",
+      "start_time": 282.5,
+      "end_time": 287.0,
+      "duration": 4.5,
+      "pred_len_vi": 11,
+      "max_vi_final": 12,
+      "best_translation": "Công cụ này cải thiện sức khỏe tâm lý theo thời gian.",
+      "best_score": 0.82,
+      "candidates": [
+        {
+          "text_vi": "Công cụ này cải thiện sức khỏe tâm lý theo thời gian.",
+          "vi_units": 12,
+          "sem_score": 0.82,
+          "dur_error": 0.0,
+          "flu_penalty": 0.0,
+          "final_score": 0.82
+        },
+        {
+          "text_vi": "Công cụ này làm sức khỏe tâm lý tốt dần.",
+          "vi_units": 10,
+          "sem_score": 0.82,
+          "dur_error": 0.16666666666666666,
+          "flu_penalty": 0.0,
+          "final_score": 0.72
+        },
+        {
+          "text_vi": "Sức khỏe tâm lý cải thiện dần nhờ công cụ này.",
+          "vi_units": 11,
+          "sem_score": 0.82,
+          "dur_error": 0.08333333333333333,
+          "flu_penalty": 0.0,
+          "final_score": 0.7699999999999999
+        }
+      ],
+      "context_used": {
+        "previous_context": "- [260.1s - 271.5s] Today, there's a field of psychological treatment called cognitive behavioral therapy, or CBT, which is partially focused on regulating the tone of self-talk.\n- [271.9s - 282.3s] Cognitive behavioral therapists often teach strategies to identify cycles of negative thoughts and replace them with neutral or more compassionate reflections.",
+        "next_context": "- [287.4s - 293.1s] So the next time you find yourself chatting with yourself, remember to be kind.\n- [293.4s - 297.6s] That inner voice is a partner you'll be talking to for many years to come.",
+        "global_context_preview": "**CONTEXT PACK**  \n\n1. **Chủ đề chính của bài**: Tự nói với bản thân và ảnh hưởng tâm lý của nó trong đời sống hàng ngày.  \n\n2. **Bối cảnh / tình huống**: Bài giảng tâm lý học giải thích hiện tượng tự nói với bản thân từ góc độ khoa học, kèm ví dụ thực tế và cách điều chỉnh để cải thiện tâm trạng.  \n\n3. **Nhân vật, ngôi xưng hô, quan hệ**:  \n   - Người nói (ngôi thứ nhất: \"tôi\"), khán giả (ngôi thứ ba), bản thân (người nói).  \n   - Lev Vygotsky (triết gia tâm lý học Nga), CBT (trị liệu hành vi nhận thức).  \n\n4. **Văn phong nên dùng khi dịch sang tiếng Việt**: Ngôn ngữ tự nhiên, gần gũi, mạch lạc, tránh thuật ngữ chuyên sâu nhưng đảm bảo độ chính xác khoa học. Sử dụng câu ngắn, phù hợp phong cách TED Talk.  \n\n5. **Các thuật ngữ, cụm từ, tên riêng quan trọng cần dịch nhất quán**:  \n   - Self"
+      }
+    },
+    {
+      "segment_id": 23,
+      "source_text": "So the next time you find yourself chatting with yourself, remember to be kind.",
+      "start_time": 287.4,
+      "end_time": 293.1,
+      "duration": 5.7,
+      "pred_len_vi": 18,
+      "max_vi_final": 19,
+      "best_translation": "Lần sau khi bạn tự nói với bản thân, hãy nhớ dịu dàng.\" (14 syllables)",
+      "best_score": 0.6936842105263158,
+      "candidates": [
+        {
+          "text_vi": "Lần sau khi bạn tự nói với bản thân, hãy nhớ dịu dàng.\" (14 syllables)",
+          "vi_units": 15,
+          "sem_score": 0.82,
+          "dur_error": 0.21052631578947367,
+          "flu_penalty": 0.0,
+          "final_score": 0.6936842105263158
+        },
+        {
+          "text_vi": "Lần sau bạn tự nói, hãy dịu dàng.\" (11 syllables)",
+          "vi_units": 10,
+          "sem_score": 0.82,
+          "dur_error": 0.47368421052631576,
+          "flu_penalty": 0.0,
+          "final_score": 0.5357894736842105
+        },
+        {
+          "text_vi": "Khi bạn tự nói với bản thân, hãy dịu dàng.\" (12 syllables)",
+          "vi_units": 12,
+          "sem_score": 0.82,
+          "dur_error": 0.3684210526315789,
+          "flu_penalty": 0.0,
+          "final_score": 0.5989473684210526
+        }
+      ],
+      "context_used": {
+        "previous_context": "- [271.9s - 282.3s] Cognitive behavioral therapists often teach strategies to identify cycles of negative thoughts and replace them with neutral or more compassionate reflections.\n- [282.5s - 287.0s] Over time, these tools can improve one's mental health.",
+        "next_context": "- [293.4s - 297.6s] That inner voice is a partner you'll be talking to for many years to come.\n- [299.3s - 317.1s] Do you ever have trouble concentrating on and completing tasks? Learn more about the relationship between self-talk and procrastination with this video. Or for more actionable, science-based advice on how to build strengths of heart, mind, and will, visit ed.ted.com slash buildcharacter.",
+        "global_context_preview": "**CONTEXT PACK**  \n\n1. **Chủ đề chính của bài**: Tự nói với bản thân và ảnh hưởng tâm lý của nó trong đời sống hàng ngày.  \n\n2. **Bối cảnh / tình huống**: Bài giảng tâm lý học giải thích hiện tượng tự nói với bản thân từ góc độ khoa học, kèm ví dụ thực tế và cách điều chỉnh để cải thiện tâm trạng.  \n\n3. **Nhân vật, ngôi xưng hô, quan hệ**:  \n   - Người nói (ngôi thứ nhất: \"tôi\"), khán giả (ngôi thứ ba), bản thân (người nói).  \n   - Lev Vygotsky (triết gia tâm lý học Nga), CBT (trị liệu hành vi nhận thức).  \n\n4. **Văn phong nên dùng khi dịch sang tiếng Việt**: Ngôn ngữ tự nhiên, gần gũi, mạch lạc, tránh thuật ngữ chuyên sâu nhưng đảm bảo độ chính xác khoa học. Sử dụng câu ngắn, phù hợp phong cách TED Talk.  \n\n5. **Các thuật ngữ, cụm từ, tên riêng quan trọng cần dịch nhất quán**:  \n   - Self"
+      }
+    },
+    {
+      "segment_id": 24,
+      "source_text": "That inner voice is a partner you'll be talking to for many years to come.",
+      "start_time": 293.4,
+      "end_time": 297.6,
+      "duration": 4.2,
+      "pred_len_vi": 19,
+      "max_vi_final": 20,
+      "best_translation": "Ngôn ngữ nội tâm này là người bạn nói chuyện suốt đời.",
+      "best_score": 0.58,
+      "candidates": [
+        {
+          "text_vi": "Ngôn ngữ nội tâm này là người bạn nói chuyện suốt đời.",
+          "vi_units": 12,
+          "sem_score": 0.82,
+          "dur_error": 0.4,
+          "flu_penalty": 0.0,
+          "final_score": 0.58
+        },
+        {
+          "text_vi": "Ngôn ngữ nội tâm – người bạn nói chuyện suốt đời.",
+          "vi_units": 10,
+          "sem_score": 0.82,
+          "dur_error": 0.5,
+          "flu_penalty": 0.0,
+          "final_score": 0.52
+        },
+        {
+          "text_vi": "Ngôn ngữ nội tâm là người bạn nói chuyện mãi.",
+          "vi_units": 10,
+          "sem_score": 0.82,
+          "dur_error": 0.5,
+          "flu_penalty": 0.0,
+          "final_score": 0.52
+        }
+      ],
+      "context_used": {
+        "previous_context": "- [282.5s - 287.0s] Over time, these tools can improve one's mental health.\n- [287.4s - 293.1s] So the next time you find yourself chatting with yourself, remember to be kind.",
+        "next_context": "- [299.3s - 317.1s] Do you ever have trouble concentrating on and completing tasks? Learn more about the relationship between self-talk and procrastination with this video. Or for more actionable, science-based advice on how to build strengths of heart, mind, and will, visit ed.ted.com slash buildcharacter.",
+        "global_context_preview": "**CONTEXT PACK**  \n\n1. **Chủ đề chính của bài**: Tự nói với bản thân và ảnh hưởng tâm lý của nó trong đời sống hàng ngày.  \n\n2. **Bối cảnh / tình huống**: Bài giảng tâm lý học giải thích hiện tượng tự nói với bản thân từ góc độ khoa học, kèm ví dụ thực tế và cách điều chỉnh để cải thiện tâm trạng.  \n\n3. **Nhân vật, ngôi xưng hô, quan hệ**:  \n   - Người nói (ngôi thứ nhất: \"tôi\"), khán giả (ngôi thứ ba), bản thân (người nói).  \n   - Lev Vygotsky (triết gia tâm lý học Nga), CBT (trị liệu hành vi nhận thức).  \n\n4. **Văn phong nên dùng khi dịch sang tiếng Việt**: Ngôn ngữ tự nhiên, gần gũi, mạch lạc, tránh thuật ngữ chuyên sâu nhưng đảm bảo độ chính xác khoa học. Sử dụng câu ngắn, phù hợp phong cách TED Talk.  \n\n5. **Các thuật ngữ, cụm từ, tên riêng quan trọng cần dịch nhất quán**:  \n   - Self"
+      }
+    },
+    {
+      "segment_id": 25,
+      "source_text": "Do you ever have trouble concentrating on and completing tasks? Learn more about the relationship between self-talk and procrastination with this video. Or for more actionable, science-based advice on how to build strengths of heart, mind, and will, visit ed.ted.com slash buildcharacter.",
+      "start_time": 299.3,
+      "end_time": 317.1,
+      "duration": 17.8,
+      "pred_len_vi": 60,
+      "max_vi_final": 61,
+      "best_translation": "Chào bạn! Tôi là trợ lý AI, bạn có thể hỏi bất cứ điều gì để tôi giúp đỡ nhé. 😊",
+      "best_score": 0.4167213114754098,
+      "candidates": [
+        {
+          "text_vi": "Chào bạn! Tôi là trợ lý AI, bạn có thể hỏi bất cứ điều gì để tôi giúp đỡ nhé. 😊",
+          "vi_units": 20,
+          "sem_score": 0.82,
+          "dur_error": 0.6721311475409836,
+          "flu_penalty": 0.0,
+          "final_score": 0.4167213114754098
+        }
+      ],
+      "context_used": {
+        "previous_context": "- [287.4s - 293.1s] So the next time you find yourself chatting with yourself, remember to be kind.\n- [293.4s - 297.6s] That inner voice is a partner you'll be talking to for many years to come.",
+        "next_context": "",
+        "global_context_preview": "**CONTEXT PACK**  \n\n1. **Chủ đề chính của bài**: Tự nói với bản thân và ảnh hưởng tâm lý của nó trong đời sống hàng ngày.  \n\n2. **Bối cảnh / tình huống**: Bài giảng tâm lý học giải thích hiện tượng tự nói với bản thân từ góc độ khoa học, kèm ví dụ thực tế và cách điều chỉnh để cải thiện tâm trạng.  \n\n3. **Nhân vật, ngôi xưng hô, quan hệ**:  \n   - Người nói (ngôi thứ nhất: \"tôi\"), khán giả (ngôi thứ ba), bản thân (người nói).  \n   - Lev Vygotsky (triết gia tâm lý học Nga), CBT (trị liệu hành vi nhận thức).  \n\n4. **Văn phong nên dùng khi dịch sang tiếng Việt**: Ngôn ngữ tự nhiên, gần gũi, mạch lạc, tránh thuật ngữ chuyên sâu nhưng đảm bảo độ chính xác khoa học. Sử dụng câu ngắn, phù hợp phong cách TED Talk.  \n\n5. **Các thuật ngữ, cụm từ, tên riêng quan trọng cần dịch nhất quán**:  \n   - Self"
+      }
+    }
+  ]
+}
