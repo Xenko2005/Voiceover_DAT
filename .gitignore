@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+module_3_adaptive_translation/outputs/
+module_4_tts_alignment/outputs/
+*.mp3
+*.wav
