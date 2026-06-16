@@ -19,16 +19,10 @@ def safe_float(value, default=0.0):
 
 
 def extract_text(item):
-    """
-    Hỗ trợ nhiều tên field khác nhau.
-
-    File module 1 hiện dùng:
-        transcribed_text
-    """
     return (
         item.get("transcribed_text")
-        or item.get("text")
         or item.get("source_text")
+        or item.get("text")
         or item.get("transcript")
         or item.get("sentence")
         or ""
@@ -38,18 +32,14 @@ def extract_text(item):
 def extract_start_time(item):
     return safe_float(
         item.get("start_time", item.get("start", 0.0)),
-        default=0.0
+        default=0.0,
     )
 
 
 def extract_end_time(item, start_time):
-    """
-    File module 1 hiện dùng:
-        stop_time
-    """
     return safe_float(
         item.get("end_time", item.get("stop_time", item.get("end", start_time))),
-        default=start_time
+        default=start_time,
     )
 
 
@@ -71,31 +61,26 @@ def load_segments_from_json(path):
         data = json.load(f)
 
     if data == []:
-        raise ValueError(
-            f"File {path} đang là JSON rỗng []. Không có segment nào để xử lý."
-        )
+        raise ValueError(f"File {path} đang là JSON rỗng [].")
 
     source_file = None
 
-    # Format:
-    # {
-    #   "source_file": "ted_talk.mp3",
-    #   "chunks": [...]
-    # }
     if isinstance(data, dict):
         source_file = data.get("source_file")
 
-        if "chunks" in data:
-            data = data["chunks"]
-        elif "segments" in data:
+        if "segments" in data:
             data = data["segments"]
+        elif "chunks" in data:
+            data = data["chunks"]
         elif "results" in data:
             data = data["results"]
         else:
             data = [data]
 
     if not isinstance(data, list):
-        raise ValueError("JSON không đúng format. Cần list hoặc dict chứa chunks/segments.")
+        raise ValueError(
+            "JSON không đúng format. Cần list hoặc dict chứa chunks/segments/results."
+        )
 
     segments = []
 
@@ -112,9 +97,11 @@ def load_segments_from_json(path):
         if not text:
             continue
 
+        segment_id = item.get("segment_id", i)
+
         segments.append(
             SourceSegment(
-                segment_id=i,
+                segment_id=int(segment_id),
                 source_text=text,
                 start_time=start_time,
                 end_time=end_time,
@@ -142,9 +129,11 @@ def load_segments_from_csv(path):
             if not text:
                 continue
 
+            segment_id = row.get("segment_id", i)
+
             segments.append(
                 SourceSegment(
-                    segment_id=i,
+                    segment_id=int(segment_id),
                     source_text=text,
                     start_time=start_time,
                     end_time=end_time,
@@ -156,10 +145,6 @@ def load_segments_from_csv(path):
 
 
 def load_segments_from_txt(path):
-    """
-    Fallback nếu chỉ có transcript txt.
-    Vì không có timestamp thật, duration tạm = 3.0s.
-    """
     segments = []
 
     with open(path, "r", encoding="utf-8") as f:
@@ -194,44 +179,11 @@ def load_segments(path):
     raise ValueError("Chỉ hỗ trợ .json, .csv hoặc .txt")
 
 
-def find_first_non_empty_data_file():
-    candidate_dirs = [
-        "output_files",
-        "output_stream",
-        "speech_to_text",
-    ]
-
-    supported_exts = [".json", ".csv", ".txt"]
-
-    for folder in candidate_dirs:
-        if not os.path.exists(folder):
-            continue
-
-        for filename in os.listdir(folder):
-            path = os.path.join(folder, filename)
-            lower = filename.lower()
-
-            if not any(lower.endswith(ext) for ext in supported_exts):
-                continue
-
-            if os.path.getsize(path) <= 2:
-                print(f"Bỏ qua file rỗng: {path}")
-                continue
-
-            return path
-
-    return None
-
-
 # =====================================================
 # Context helpers
 # =====================================================
 
 def build_full_transcript(segments):
-    """
-    Ghép toàn bộ transcript từ ASR output.
-    Dùng để tạo Document Context Pack.
-    """
     lines = []
 
     for seg in segments:
@@ -242,35 +194,46 @@ def build_full_transcript(segments):
     return "\n".join(lines)
 
 
-def build_local_context(segments, current_index, window_size=2):
+# =====================================================
+# Batch helpers
+# =====================================================
+
+def make_batches(items, batch_size):
+    for i in range(0, len(items), batch_size):
+        yield items[i:i + batch_size]
+
+
+def save_intermediate_output(
+    output_path,
+    data_path,
+    model,
+    use_llm_judge,
+    context_pack,
+    results,
+    num_total_segments,
+    num_processed_segments,
+    current_batch,
+    total_batches,
+):
     """
-    Lấy vài segment trước và sau current segment.
-    current_index bắt đầu từ 0.
+    Lưu tạm sau mỗi batch để nếu chạy bị lỗi giữa chừng
+    thì vẫn còn kết quả đã xử lý.
     """
-    start = max(0, current_index - window_size)
-    end = min(len(segments), current_index + window_size + 1)
-
-    previous_segments = segments[start:current_index]
-    next_segments = segments[current_index + 1:end]
-
-    prev_text = "\n".join(
-        [
-            f"- [{seg.start_time:.1f}s - {seg.end_time:.1f}s] {seg.source_text}"
-            for seg in previous_segments
-        ]
-    )
-
-    next_text = "\n".join(
-        [
-            f"- [{seg.start_time:.1f}s - {seg.end_time:.1f}s] {seg.source_text}"
-            for seg in next_segments
-        ]
-    )
-
-    return {
-        "previous": prev_text,
-        "next": next_text
+    final_output = {
+        "input_file": data_path,
+        "ollama_model": model,
+        "use_llm_judge": use_llm_judge,
+        "context_mode": "document_context_pack",
+        "current_batch": current_batch,
+        "total_batches": total_batches,
+        "num_total_segments": num_total_segments,
+        "num_processed_segments": num_processed_segments,
+        "document_context_pack": context_pack,
+        "results": results,
     }
+
+    with open(output_path, "w", encoding="utf-8") as f:
+        json.dump(final_output, f, ensure_ascii=False, indent=2)
 
 
 # =====================================================
@@ -283,7 +246,7 @@ def main():
     parser.add_argument(
         "--input",
         type=str,
-        default=None,
+        required=True,
         help="Đường dẫn file input từ module 1 hoặc module 2."
     )
 
@@ -308,44 +271,45 @@ def main():
     )
 
     parser.add_argument(
-        "--no-context-builder",
-        action="store_true",
-        help="Không gọi Ollama tạo Document Context Pack, dùng full transcript rút gọn."
+        "--batch-size",
+        type=int,
+        default=5,
+        help="Số segment xử lý trong mỗi batch. Mặc định 5."
+    )
+
+    parser.add_argument(
+        "--max-transcript-chars",
+        type=int,
+        default=9000,
+        help="Giới hạn độ dài full transcript đưa vào Context Pack."
     )
 
     args = parser.parse_args()
 
-    if args.input:
-        data_path = args.input
-    else:
-        data_path = find_first_non_empty_data_file()
-
-    if data_path is None:
-        print("Không tìm thấy file data hợp lệ.")
-        print("Ví dụ chạy:")
-        print(r"python module_3_adaptive_translation\run_module3.py --input output_files\ted_talk.json")
+    if not os.path.exists(args.input):
+        print(f"Không tìm thấy file input: {args.input}")
         return
 
-    if not os.path.exists(data_path):
-        print(f"Không tìm thấy file: {data_path}")
-        return
-
-    print(f"Đang đọc data từ: {data_path}")
+    print(f"Đang đọc data từ: {args.input}")
 
     try:
-        segments = load_segments(data_path)
+        all_segments = load_segments(args.input)
     except Exception as e:
         print("Lỗi khi đọc data:", e)
         return
 
-    if args.max_segments is not None:
-        segments = segments[:args.max_segments]
+    print(f"Tổng số segment đọc được: {len(all_segments)}")
 
-    print(f"Số segment đọc được: {len(segments)}")
-
-    if len(segments) == 0:
+    if len(all_segments) == 0:
         print("Không có segment nào để xử lý.")
         return
+
+    if args.max_segments is not None:
+        segments_to_process = all_segments[:args.max_segments]
+    else:
+        segments_to_process = all_segments
+
+    print(f"Số segment sẽ xử lý: {len(segments_to_process)}")
 
     translator = AdaptiveLengthTranslator(
         tts_ceiling=5.0,
@@ -356,77 +320,84 @@ def main():
         use_llm_judge=args.use_llm_judge,
     )
 
-    # Build full transcript
-    full_transcript = build_full_transcript(segments)
+    # Build full transcript từ toàn bộ bài
+    full_transcript = build_full_transcript(all_segments)
 
-    # Build document context pack
-    if args.no_context_builder:
-        print("Bỏ qua Document Context Builder. Dùng full transcript rút gọn làm context.")
-        document_context = full_transcript[:3000]
-    else:
-        print("\nĐang tạo Document Context Pack bằng Ollama...")
-        document_context = translator.build_document_context_with_ollama(
-            full_transcript=full_transcript,
-            model=args.model,
-        )
+    print("\nĐang tạo Document Context Pack bằng Ollama...")
+    context_pack = translator.build_document_context_pack(
+        full_transcript=full_transcript,
+        model=args.model,
+        max_transcript_chars=args.max_transcript_chars,
+    )
 
     print("\n========== DOCUMENT CONTEXT PACK ==========")
-    print(document_context[:2000])
+    print(context_pack[:2000])
     print("===========================================\n")
-
-    results = []
-
-    for idx, segment in enumerate(segments):
-        local_context = build_local_context(segments, idx, window_size=2)
-
-        result = translator.translate_and_select(
-            segment=segment,
-            global_context=document_context,
-            previous_context=local_context["previous"],
-            next_context=local_context["next"],
-        )
-
-        results.append(result)
-
-        print("\n" + "=" * 80)
-        print("SEGMENT:", result["segment_id"])
-        print("SOURCE:", result["source_text"])
-        print("START:", result["start_time"])
-        print("END:", result["end_time"])
-        print("DURATION:", result["duration"])
-        print("PredLenVI:", result["pred_len_vi"])
-        print("MaxVI_final:", result["max_vi_final"])
-        print("BEST:", result["best_translation"])
-        print("SCORE:", round(result["best_score"], 3))
-
-        print("\nCandidates:")
-        for c in result["candidates"]:
-            print(
-                f"- {c['text_vi']} | "
-                f"units={c['vi_units']} | "
-                f"Sem={round(c['sem_score'], 3)} | "
-                f"DurErr={round(c['dur_error'], 3)} | "
-                f"Flu={round(c['flu_penalty'], 3)} | "
-                f"Score={round(c['final_score'], 3)}"
-            )
 
     output_dir = os.path.join("module_3_adaptive_translation", "outputs")
     os.makedirs(output_dir, exist_ok=True)
 
     output_path = os.path.join(output_dir, "module3_translation_results.json")
 
-    final_output = {
-        "input_file": data_path,
-        "ollama_model": args.model,
-        "use_llm_judge": args.use_llm_judge,
-        "document_context": document_context,
-        "results": results,
-    }
+    results = []
 
-    with open(output_path, "w", encoding="utf-8") as f:
-        json.dump(final_output, f, ensure_ascii=False, indent=2)
+    batches = list(make_batches(segments_to_process, args.batch_size))
+    total_batches = len(batches)
 
-    print("\nĐã lưu kết quả tại:", output_path)
+    for batch_idx, batch in enumerate(batches, start=1):
+        print("\n" + "=" * 80)
+        print(f"Đang xử lý batch {batch_idx}/{total_batches}")
+        print("Segments trong batch:", [seg.segment_id for seg in batch])
+        print("=" * 80)
+
+        for segment in batch:
+            result = translator.translate_and_select(
+                segment=segment,
+                context_pack=context_pack,
+            )
+
+            results.append(result)
+
+            print("\n" + "-" * 80)
+            print("SEGMENT:", result["segment_id"])
+            print("SOURCE:", result["source_text"])
+            print("START:", result["start_time"])
+            print("END:", result["end_time"])
+            print("DURATION:", result["duration"])
+            print("PredLenVI:", result["pred_len_vi"])
+            print("MaxVI_final:", result["max_vi_final"])
+            print("BEST:", result["best_translation"])
+            print("SCORE:", round(result["best_score"], 3))
+
+            print("\nCandidates:")
+            for c in result["candidates"]:
+                print(
+                    f"- {c['text_vi']} | "
+                    f"units={c['vi_units']} | "
+                    f"Sem={round(c['sem_score'], 3)} | "
+                    f"DurErr={round(c['dur_error'], 3)} | "
+                    f"Flu={round(c['flu_penalty'], 3)} | "
+                    f"Score={round(c['final_score'], 3)}"
+                )
+
+        # Lưu tạm sau mỗi batch
+        save_intermediate_output(
+            output_path=output_path,
+            data_path=args.input,
+            model=args.model,
+            use_llm_judge=args.use_llm_judge,
+            context_pack=context_pack,
+            results=results,
+            num_total_segments=len(all_segments),
+            num_processed_segments=len(results),
+            current_batch=batch_idx,
+            total_batches=total_batches,
+        )
+
+        print(f"\nĐã lưu tạm sau batch {batch_idx}/{total_batches}: {output_path}")
+
+    print("\nHoàn tất Module 3.")
+    print("Đã lưu kết quả tại:", output_path)
 
 
 if __name__ == "__main__":

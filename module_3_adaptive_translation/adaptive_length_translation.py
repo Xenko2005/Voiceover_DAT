@@ -30,7 +30,7 @@ class TranslationCandidate:
 
 
 # =========================
-# Adaptive Length Translator
+# Main translator
 # =========================
 
 class AdaptiveLengthTranslator:
@@ -40,29 +40,9 @@ class AdaptiveLengthTranslator:
         margin: int = 1,
         lambda_dur: float = 0.6,
         mu_flu: float = 0.3,
-        ollama_model: str = "qwen2.5:3b",
+        ollama_model: str = "qwen3.5:2b",
         use_llm_judge: bool = False,
     ):
-        """
-        tts_ceiling:
-            Số âm tiết tiếng Việt tối đa TTS có thể đọc rõ trong 1 giây.
-
-        margin:
-            Biên an toàn cho độ dài tiếng Việt.
-
-        lambda_dur:
-            Hệ số phạt lỗi duration.
-
-        mu_flu:
-            Hệ số phạt câu thiếu tự nhiên.
-
-        ollama_model:
-            Model Ollama dùng để dịch / tạo context.
-
-        use_llm_judge:
-            True = dùng Ollama chấm SemScore.
-            False = dùng heuristic demo để chạy nhanh hơn.
-        """
         self.tts_ceiling = tts_ceiling
         self.margin = margin
         self.lambda_dur = lambda_dur
@@ -78,59 +58,104 @@ class AdaptiveLengthTranslator:
         words = re.findall(r"[A-Za-z]+(?:'[A-Za-z]+)?", text)
         return len(words)
 
-    def count_english_chars(self, text: str) -> int:
-        return len(re.sub(r"\s+", "", text))
-
     def count_vietnamese_units(self, text: str) -> int:
         """
         Đếm đơn vị tiếng Việt theo khoảng trắng.
-        Trong tiếng Việt, mỗi âm tiết thường được tách bằng khoảng trắng.
-
-        Ví dụ:
-        'Mô hình này dịch giọng nói thời gian thực'
-        -> Mô / hình / này / dịch / giọng / nói / thời / gian / thực
-        -> 9 đơn vị.
+        Tiếng Việt thường tách âm tiết bằng dấu cách.
         """
         clean = re.sub(r"[^\w\sÀ-ỹ]", "", text, flags=re.UNICODE)
         units = [u for u in clean.split() if u.strip()]
         return len(units)
 
     # =====================================================
-    # Ollama
+    # Ollama API
     # =====================================================
 
     def call_ollama(self, prompt: str, model: Optional[str] = None) -> str:
         """
         Gọi Ollama local.
-        Cần chạy trước:
-            ollama serve
 
-        Kiểm tra model:
-            ollama list
+        Bản này xử lý riêng các model thinking như qwen3.5:2b:
+        - Thêm /no_think vào prompt.
+        - Gửi "think": False vào Ollama API.
+        - Tăng num_predict để model còn đủ token trả lời.
         """
-        model = model or self.ollama_model
 
+        model = model or self.ollama_model
         url = "http://localhost:11434/api/generate"
+
+        safe_prompt = "/no_think\n" + prompt
 
         payload = {
             "model": model,
-            "prompt": prompt,
+            "prompt": safe_prompt,
             "stream": False,
+            "think": False,
             "options": {
-                "temperature": 0.3,
+                "temperature": 0.2,
                 "top_p": 0.9,
-            }
+                "num_predict": 1024,
+                "num_ctx": 4096,
+            },
         }
 
-        response = requests.post(url, json=payload, timeout=240)
-        response.raise_for_status()
+        try:
+            response = requests.post(url, json=payload, timeout=240)
 
-        return response.json().get("response", "").strip()
+            if response.status_code != 200:
+                print("\n[OLLAMA API ERROR]")
+                print("Status code:", response.status_code)
+                print("URL:", url)
+                print("Model:", model)
+                print("Response text:")
+                print(response.text)
+                print()
+                response.raise_for_status()
+
+            data = response.json()
+
+            final_response = data.get("response", "")
+            thinking_response = data.get("thinking", "")
+
+            if final_response is None:
+                final_response = ""
+
+            if thinking_response is None:
+                thinking_response = ""
+
+            final_response = final_response.strip()
+            thinking_response = thinking_response.strip()
+
+            if final_response:
+                return final_response
+
+            print("\n[OLLAMA EMPTY RESPONSE]")
+            print("Model:", model)
+            print("Done:", data.get("done"))
+            print("Done reason:", data.get("done_reason"))
+            print("Prompt eval count:", data.get("prompt_eval_count"))
+            print("Eval count:", data.get("eval_count"))
+            print("Has thinking:", bool(thinking_response))
+            print("Thinking length:", len(thinking_response))
+            print("Raw keys:", list(data.keys()))
+            print()
+
+            return ""
+
+        except requests.exceptions.ConnectionError:
+            raise RuntimeError(
+                "Không kết nối được Ollama. Hãy mở CMD khác và chạy: ollama serve"
+            )
+
+        except requests.exceptions.Timeout:
+            raise RuntimeError(
+                "Ollama timeout. Prompt có thể quá dài hoặc model chạy quá chậm."
+            )
+
+        except Exception as e:
+            raise RuntimeError(f"Lỗi khi gọi Ollama: {e}")
 
     def strip_code_fence(self, text: str) -> str:
-        """
-        Nếu LLM trả về ```json ... ```, hàm này bóc phần code fence.
-        """
         text = text.strip()
 
         if text.startswith("```"):
@@ -144,37 +169,40 @@ class AdaptiveLengthTranslator:
         Parse output từ LLM thành list candidate.
 
         Hỗ trợ:
-        1. JSON list:
-           ["...", "...", "..."]
-
-        2. Dạng đánh số:
-           1. ...
-           2. ...
-           3. ...
+        - JSON list
+        - JSON object
+        - Dạng đánh số 1. 2. 3.
         """
         raw_text = self.strip_code_fence(raw_text)
 
-        # Cách 1: parse JSON list
         try:
             data = json.loads(raw_text)
+
             if isinstance(data, list):
-                candidates = [str(x).strip() for x in data if str(x).strip()]
-                return candidates[:3]
+                return [str(x).strip() for x in data if str(x).strip()][:3]
+
+            if isinstance(data, dict):
+                for key in ["translations", "candidates", "results", "translation"]:
+                    if key in data:
+                        value = data[key]
+
+                        if isinstance(value, list):
+                            return [str(x).strip() for x in value if str(x).strip()][:3]
+
+                        if isinstance(value, str):
+                            return [value.strip()]
         except Exception:
             pass
 
-        # Cách 2: tìm JSON list nằm bên trong text
         try:
             match = re.search(r"\[.*\]", raw_text, flags=re.DOTALL)
             if match:
                 data = json.loads(match.group(0))
                 if isinstance(data, list):
-                    candidates = [str(x).strip() for x in data if str(x).strip()]
-                    return candidates[:3]
+                    return [str(x).strip() for x in data if str(x).strip()][:3]
         except Exception:
             pass
 
-        # Cách 3: parse từng dòng
         candidates = []
 
         for line in raw_text.splitlines():
@@ -185,13 +213,21 @@ class AdaptiveLengthTranslator:
 
             line = re.sub(r"^\s*[\-\*\•]\s*", "", line)
             line = re.sub(r"^\s*\d+[\.\)]\s*", "", line)
+
+            line = re.sub(
+                r"^\s*(bản dịch|translation|vietnamese|candidate)\s*\d*\s*[:：]\s*",
+                "",
+                line,
+                flags=re.I,
+            )
+
             line = line.strip().strip('"').strip("'").strip()
 
             if line:
                 candidates.append(line)
 
-        # Loại trùng
         unique = []
+
         for cand in candidates:
             if cand not in unique:
                 unique.append(cand)
@@ -199,52 +235,142 @@ class AdaptiveLengthTranslator:
         return unique[:3]
 
     # =====================================================
-    # Context Builder
+    # Vietnamese / English filtering
     # =====================================================
 
-    def build_document_context_with_ollama(
+    def has_vietnamese_signal(self, text: str) -> bool:
+        lower = text.lower()
+
+        has_diacritics = re.search(
+            r"[ăâđêôơưáàảãạấầẩẫậắằẳẵặéèẻẽẹếềểễệíìỉĩịóòỏõọốồổỗộớờởỡợúùủũụứừửữựýỳỷỹỵ]",
+            lower,
+        )
+
+        if has_diacritics:
+            return True
+
+        common_vi_words = {
+            "toi", "tôi", "ban", "bạn", "minh", "mình",
+            "la", "là", "cua", "của", "va", "và",
+            "khong", "không", "co", "có", "mot", "một",
+            "nay", "này", "do", "đó", "vi", "vì",
+            "sao", "som", "sớm", "qua", "quá", "luc", "lúc",
+            "chuong", "chuông", "bao", "báo",
+            "thuc", "thức", "buoi", "buổi", "sang", "sáng",
+            "ra", "ngoai", "ngoài", "cua", "cửa",
+            "rang", "rằng", "nen", "nên", "can", "cần",
+        }
+
+        words = re.findall(r"\w+", lower, flags=re.UNICODE)
+        hit = sum(1 for w in words if w in common_vi_words)
+
+        return hit >= 2
+
+    def looks_like_english(self, text: str) -> bool:
+        english_words = re.findall(r"[A-Za-z]+", text.lower())
+
+        if len(english_words) == 0:
+            return False
+
+        common_english = {
+            "the", "you", "your", "and", "or", "but", "because",
+            "when", "while", "why", "what", "how", "did", "do",
+            "does", "is", "are", "was", "were", "set", "morning",
+            "alarm", "yourself", "early", "as", "mutter", "blare",
+            "blares", "rushing", "front", "door", "reach", "keys",
+            "realize", "they", "not", "there", "think", "need",
+            "haircut", "neighbor", "frustrated", "shout",
+        }
+
+        count_common = sum(1 for w in english_words if w in common_english)
+
+        if count_common >= 3 and not self.has_vietnamese_signal(text):
+            return True
+
+        return False
+
+    def filter_valid_vietnamese_candidates(self, candidates: List[str]) -> List[str]:
+        valid = []
+
+        for cand in candidates:
+            cand = cand.strip()
+
+            if not cand:
+                continue
+
+            lower = cand.lower()
+
+            if lower.startswith("[error]"):
+                continue
+
+            if "[cần dịch]" in lower or "[bản ngắn]" in lower or "[bản rút gọn]" in lower:
+                continue
+
+            if self.looks_like_english(cand):
+                continue
+
+            valid.append(cand)
+
+        unique = []
+
+        for cand in valid:
+            if cand not in unique:
+                unique.append(cand)
+
+        return unique[:3]
+
+    # =====================================================
+    # Context Pack Builder
+    # =====================================================
+
+    def build_document_context_pack(
         self,
         full_transcript: str,
-        model: Optional[str] = None
+        model: Optional[str] = None,
+        max_transcript_chars: int = 9000,
     ) -> str:
         """
-        Đọc toàn bộ transcript và tạo Context Pack.
-        Context Pack này sẽ được dùng khi dịch từng segment.
+        Ollama đọc full transcript và tạo Document Context Pack.
+        Context Pack được tạo 1 lần cho toàn bài.
         """
-
         model = model or self.ollama_model
 
-        max_chars = 9000
         transcript = full_transcript
 
-        if len(transcript) > max_chars:
-            transcript = transcript[:max_chars] + "\n...[TRUNCATED]"
+        if len(transcript) > max_transcript_chars:
+            transcript = transcript[:max_transcript_chars] + "\n...[TRUNCATED]"
 
         prompt = f"""
 Bạn là hệ thống phân tích ngữ cảnh cho bài toán dịch Anh-Việt speech-to-speech.
 
 Hãy đọc transcript tiếng Anh dưới đây và tạo CONTEXT PACK ngắn gọn để hỗ trợ dịch từng segment.
 
-Yêu cầu CONTEXT PACK gồm:
+Yêu cầu CONTEXT PACK:
 1. Chủ đề chính của bài.
 2. Bối cảnh / tình huống.
 3. Nhân vật, ngôi xưng hô, quan hệ giữa các đối tượng nếu có.
 4. Văn phong nên dùng khi dịch sang tiếng Việt.
 5. Các thuật ngữ, cụm từ, tên riêng quan trọng cần dịch nhất quán.
-6. Những lưu ý giúp dịch các câu ngắn/câu cụt đúng ngữ cảnh.
+6. Những lưu ý giúp dịch các câu ngắn hoặc câu cụt đúng ngữ cảnh.
 
 Transcript:
 {transcript}
 
-CONTEXT PACK bằng tiếng Việt:
+Chỉ trả về CONTEXT PACK bằng tiếng Việt. Không giải thích thêm.
 """.strip()
 
         try:
-            context_pack = self.call_ollama(prompt, model=model)
-            return context_pack.strip()
+            context_pack = self.call_ollama(prompt, model=model).strip()
+
+            if not context_pack:
+                print("[WARN] Context Pack rỗng. Dùng transcript rút gọn làm context thay thế.")
+                return transcript[:3000]
+
+            return context_pack
+
         except Exception as e:
-            print("[WARN] Không tạo được Document Context Pack bằng Ollama:", e)
-            print("[WARN] Sẽ dùng transcript rút gọn làm context.")
+            print("[WARN] Không tạo được Context Pack bằng Ollama:", e)
+            print("[WARN] Dùng transcript rút gọn làm context thay thế.")
             return transcript[:3000]
 
     # =====================================================
@@ -256,7 +382,6 @@ CONTEXT PACK bằng tiếng Việt:
         lower = text.lower()
 
         wen = self.count_english_words(text)
-        cen = self.count_english_chars(text)
         speech_rate = wen / max(segment.duration, 1e-6)
 
         has_subordinate = any(
@@ -268,19 +393,19 @@ CONTEXT PACK bằng tiếng Việt:
         )
 
         is_question = "?" in text or lower.startswith(
-            ("what", "why", "how", "when", "where", "who",
-             "do", "does", "did", "can", "could", "would", "should")
+            (
+                "what", "why", "how", "when", "where", "who",
+                "do", "does", "did", "can", "could", "would", "should"
+            )
         )
 
         has_number = bool(re.search(r"\d+", text))
 
-        # Tên riêng đơn giản: từ viết hoa không nằm đầu câu.
         proper_nouns = re.findall(r"\b[A-Z][a-z]+\b", text)
         has_proper_noun = len(proper_nouns) > 1
 
         return {
             "wen": wen,
-            "cen": cen,
             "duration": segment.duration,
             "speech_rate": speech_rate,
             "has_subordinate": has_subordinate,
@@ -294,35 +419,26 @@ CONTEXT PACK bằng tiếng Việt:
     # =====================================================
 
     def estimate_dynamic_k(self, features: Dict) -> float:
-        """
-        Rule-based k_dynamic.
-        Sau này có thể thay bằng regression model.
-        """
         k = 1.25
 
         wen = features["wen"]
         speech_rate = features["speech_rate"]
 
-        # Câu rất ngắn thường khi dịch sang tiếng Việt dễ nở hơn
         if wen <= 3:
             k += 0.20
 
-        # Câu có mệnh đề phụ thường cần dài hơn để rõ nghĩa
         if features["has_subordinate"]:
             k += 0.15
 
-        # Câu hỏi thường cần thêm cụm từ hỏi trong tiếng Việt
         if features["is_question"]:
             k += 0.10
 
-        # Có số / tên riêng thường giữ nguyên, ít nở hơn
         if features["has_number"]:
             k -= 0.05
 
         if features["has_proper_noun"]:
             k -= 0.05
 
-        # Người nói quá nhanh thì phải siết độ dài
         if speech_rate > 3.5:
             k -= 0.10
 
@@ -340,64 +456,49 @@ CONTEXT PACK bằng tiếng Việt:
         return max(1, math.floor(max_vi_final))
 
     # =====================================================
-    # Translation prompt
+    # Translation with Context Pack
     # =====================================================
 
-    def build_context_aware_translation_prompt(
+    def build_context_pack_translation_prompt(
         self,
         segment: SourceSegment,
         max_vi_final: int,
-        global_context: str = "",
-        previous_context: str = "",
-        next_context: str = "",
+        context_pack: str = "",
     ) -> str:
         """
-        Prompt dịch có:
-        - Global context toàn bài
-        - Previous segments
+        Prompt dịch dùng:
+        - Document Context Pack
         - Current segment
-        - Next segments
-        - Ràng buộc độ dài
+        - Length constraint
         """
 
-        max_context_chars = 4500
-        if len(global_context) > max_context_chars:
-            global_context = global_context[:max_context_chars] + "\n...[TRUNCATED]"
-
         prompt = f"""
-Bạn là hệ thống dịch Anh sang Việt cho bài toán speech-to-speech / voice-over.
+Bạn là hệ thống dịch Anh sang Việt cho speech-to-speech / voice-over.
 
-Nhiệm vụ:
-Dịch ONLY CURRENT SEGMENT sang tiếng Việt tự nhiên, đúng ngữ cảnh toàn bài,
-đồng thời phải ngắn gọn để đọc bằng TTS trong thời lượng gốc.
-
-GLOBAL CONTEXT PACK:
-{global_context if global_context else "(Không có context toàn bài)"}
-
-PREVIOUS SEGMENTS:
-{previous_context if previous_context else "(Không có)"}
+CONTEXT PACK:
+{context_pack if context_pack else "(Không có context pack)"}
 
 CURRENT SEGMENT:
 {segment.source_text}
 
-NEXT SEGMENTS:
-{next_context if next_context else "(Không có)"}
+Hãy dịch CURRENT SEGMENT sang tiếng Việt.
 
-Ràng buộc dịch:
-- Chỉ dịch CURRENT SEGMENT, không dịch previous/next/global context.
-- Giữ đúng ý chính của CURRENT SEGMENT.
-- Dùng GLOBAL CONTEXT để chọn từ ngữ phù hợp.
-- Dùng PREVIOUS/NEXT SEGMENTS để xử lý đại từ, câu cụt, câu nối ý.
-- Không thêm thông tin mới.
+Yêu cầu bắt buộc:
+- Chỉ dịch CURRENT SEGMENT.
+- Không dịch lại CONTEXT PACK.
+- Không giữ nguyên câu tiếng Anh.
+- Không trả về tiếng Anh.
 - Không giải thích.
 - Không ghi chú.
-- Không dùng tiếng Anh trong bản dịch, trừ thuật ngữ bắt buộc.
-- Mỗi bản dịch không vượt quá khoảng {max_vi_final} âm tiết tiếng Việt.
-- Sinh đúng 3 bản dịch khác nhau.
-- Trả về JSON list hợp lệ, không kèm text ngoài JSON.
+- Không thêm thông tin mới.
+- Giữ văn phong phù hợp với CONTEXT PACK.
+- Mỗi câu dịch không vượt quá khoảng {max_vi_final} âm tiết tiếng Việt.
+- Trả về đúng 3 phương án dịch tiếng Việt.
 
-Ví dụ format:
-["Bản dịch 1", "Bản dịch 2", "Bản dịch 3"]
+Trả về đúng format sau:
+1. câu tiếng Việt thứ nhất
+2. câu tiếng Việt thứ hai
+3. câu tiếng Việt thứ ba
 """.strip()
 
         return prompt
@@ -406,45 +507,63 @@ Ví dụ format:
         self,
         segment: SourceSegment,
         max_vi_final: int,
-        global_context: str = "",
-        previous_context: str = "",
-        next_context: str = "",
+        context_pack: str = "",
         model: Optional[str] = None,
     ) -> List[str]:
+        """
+        Sinh 3 bản dịch ứng viên bằng Ollama.
+        Nếu context pack làm model lỗi, thử lại với context ngắn hơn, rồi không context.
+        """
         model = model or self.ollama_model
 
-        prompt = self.build_context_aware_translation_prompt(
-            segment=segment,
-            max_vi_final=max_vi_final,
-            global_context=global_context,
-            previous_context=previous_context,
-            next_context=next_context,
-        )
+        context_versions = [
+            context_pack,
+            context_pack[:2500],
+            "",
+        ]
 
-        try:
-            raw_response = self.call_ollama(prompt, model=model)
-            candidates = self.parse_candidates_from_llm(raw_response)
+        last_raw_response = ""
 
-            if len(candidates) == 0:
-                print("[WARN] LLM không trả về candidate hợp lệ.")
-                print("[RAW RESPONSE]", raw_response)
-                return self.fallback_generate_candidates(segment)
+        for context in context_versions:
+            prompt = self.build_context_pack_translation_prompt(
+                segment=segment,
+                max_vi_final=max_vi_final,
+                context_pack=context,
+            )
 
-            return candidates[:3]
+            try:
+                raw_response = self.call_ollama(prompt, model=model)
+                last_raw_response = raw_response
 
-        except Exception as e:
-            print("[WARN] Lỗi khi gọi Ollama để dịch:", e)
-            return self.fallback_generate_candidates(segment)
+                candidates = self.parse_candidates_from_llm(raw_response)
+                candidates = self.filter_valid_vietnamese_candidates(candidates)
+
+                if len(candidates) > 0:
+                    return candidates[:3]
+
+                print("[WARN] Ollama trả về nhưng không có candidate tiếng Việt hợp lệ.")
+                print("[RAW RESPONSE]")
+                print(raw_response)
+
+            except Exception as e:
+                print("[WARN] Lỗi khi gọi Ollama để dịch:", e)
+
+        print("[ERROR] Không sinh được bản dịch tiếng Việt cho segment:")
+        print(segment.source_text)
+        print("[LAST RAW RESPONSE]")
+        print(last_raw_response)
+
+        return self.fallback_generate_candidates(segment)
 
     def fallback_generate_candidates(self, segment: SourceSegment) -> List[str]:
         """
-        Fallback nếu Ollama lỗi.
-        Không dùng cho kết quả nghiên cứu chính.
+        Fallback khi Ollama lỗi.
+        Không trả lại tiếng Anh để tránh nhầm là bản dịch.
         """
         return [
-            f"[CẦN DỊCH] {segment.source_text}",
-            f"[BẢN NGẮN] {segment.source_text}",
-            f"[BẢN RÚT GỌN] {segment.source_text}",
+            "[ERROR] Ollama không sinh được bản dịch tiếng Việt.",
+            "[ERROR] Kiểm tra ollama serve, tên model, hoặc prompt quá dài.",
+            "[ERROR] Không dùng kết quả này cho evaluation.",
         ]
 
     # =====================================================
@@ -452,20 +571,14 @@ Ví dụ format:
     # =====================================================
 
     def estimate_duration_error_by_units(self, vi_units: int, max_vi_final: int) -> float:
-        """
-        Ước lượng DurError bằng số âm tiết.
-        Sau khi có TTS thật, nên thay bằng:
-            DurError = abs(DurTTS - DurSrc) / DurSrc
-        """
         return abs(vi_units - max_vi_final) / max(max_vi_final, 1)
 
     def fluency_penalty_rule_based(self, text_vi: str) -> float:
-        """
-        Rule-based FluPenalty:
-        0 = rất tự nhiên
-        1 = rất tệ
-        """
         penalty = 0.0
+
+        if text_vi.strip().lower().startswith("[error]"):
+            return 1.0
+
         units = self.count_vietnamese_units(text_vi)
         tokens = text_vi.lower().split()
 
@@ -475,17 +588,15 @@ Ví dụ format:
         if units >= 22:
             penalty += 0.15
 
-        # Lặp từ liên tục
         for i in range(len(tokens) - 1):
             if tokens[i] == tokens[i + 1]:
                 penalty += 0.25
 
-        # Kết thúc bằng từ nối nghe cụt
         risky_endings = ["vì", "nhưng", "và", "để", "rằng", "nếu", "khi", "mà"]
+
         if tokens and tokens[-1] in risky_endings:
             penalty += 0.30
 
-        # Một số cụm nghe không tự nhiên
         unnatural_patterns = [
             "dịch nói",
             "thời gian thật",
@@ -501,14 +612,13 @@ Ví dụ format:
         return min(penalty, 1.0)
 
     def semantic_score_heuristic(self, source_text: str, candidate_vi: str) -> float:
-        """
-        Heuristic đơn giản khi chưa dùng LLM judge.
-        Vì không hiểu nghĩa sâu, hàm này chỉ là bản chạy nhanh.
-        """
         candidate_lower = candidate_vi.lower()
 
-        if "[cần dịch]" in candidate_lower or "[bản" in candidate_lower:
-            return 0.30
+        if candidate_lower.startswith("[error]"):
+            return 0.0
+
+        if self.looks_like_english(candidate_vi):
+            return 0.1
 
         vi_units = self.count_vietnamese_units(candidate_vi)
 
@@ -524,24 +634,21 @@ Ví dụ format:
         self,
         source_text: str,
         candidate_vi: str,
-        global_context: str = "",
+        context_pack: str = "",
         model: Optional[str] = None,
     ) -> float:
-        """
-        Dùng Ollama để chấm mức giữ nghĩa.
-        Chạy chậm hơn vì mỗi candidate cần gọi LLM.
-        """
         model = model or self.ollama_model
 
-        max_context_chars = 2500
-        if len(global_context) > max_context_chars:
-            global_context = global_context[:max_context_chars] + "\n...[TRUNCATED]"
+        if candidate_vi.strip().lower().startswith("[error]"):
+            return 0.0
+
+        context = context_pack[:2500]
 
         prompt = f"""
 Bạn là bộ đánh giá chất lượng dịch Anh-Việt trong hệ thống speech-to-speech.
 
 Hãy chấm điểm mức độ giữ nghĩa của bản dịch tiếng Việt so với câu tiếng Anh.
-Có thể dùng context toàn bài để hiểu ngữ cảnh.
+Có thể dùng CONTEXT PACK để hiểu ngữ cảnh toàn bài.
 
 Chỉ trả về một số từ 0 đến 1. Không giải thích.
 
@@ -549,10 +656,10 @@ Quy ước:
 1.0 = giữ nghĩa rất tốt
 0.8 = giữ ý chính, mất rất ít chi tiết
 0.5 = chỉ đúng một phần
-0.0 = sai nghĩa
+0.0 = sai nghĩa hoặc không phải tiếng Việt
 
-GLOBAL CONTEXT:
-{global_context if global_context else "(Không có)"}
+CONTEXT PACK:
+{context if context else "(Không có)"}
 
 English:
 {source_text}
@@ -566,9 +673,11 @@ Score:
         try:
             raw = self.call_ollama(prompt, model=model)
             match = re.search(r"(\d+(\.\d+)?)", raw)
+
             if match:
                 score = float(match.group(1))
                 return max(0.0, min(score, 1.0))
+
         except Exception as e:
             print("[WARN] Lỗi semantic_score_with_ollama:", e)
 
@@ -579,7 +688,7 @@ Score:
         source_text: str,
         candidate_text: str,
         max_vi_final: int,
-        global_context: str = "",
+        context_pack: str = "",
     ) -> TranslationCandidate:
         vi_units = self.count_vietnamese_units(candidate_text)
 
@@ -587,7 +696,7 @@ Score:
             sem_score = self.semantic_score_with_ollama(
                 source_text=source_text,
                 candidate_vi=candidate_text,
-                global_context=global_context,
+                context_pack=context_pack,
                 model=self.ollama_model,
             )
         else:
@@ -618,9 +727,7 @@ Score:
     def translate_and_select(
         self,
         segment: SourceSegment,
-        global_context: str = "",
-        previous_context: str = "",
-        next_context: str = "",
+        context_pack: str = "",
     ) -> Dict:
         pred_len_vi = self.predict_len_vi(segment)
         max_vi_final = self.calculate_max_vi_final(segment, pred_len_vi)
@@ -628,9 +735,7 @@ Score:
         candidates = self.generate_candidates_with_ollama(
             segment=segment,
             max_vi_final=max_vi_final,
-            global_context=global_context,
-            previous_context=previous_context,
-            next_context=next_context,
+            context_pack=context_pack,
             model=self.ollama_model,
         )
 
@@ -639,7 +744,7 @@ Score:
                 source_text=segment.source_text,
                 candidate_text=cand,
                 max_vi_final=max_vi_final,
-                global_context=global_context,
+                context_pack=context_pack,
             )
             for cand in candidates
         ]
@@ -668,8 +773,7 @@ Score:
                 for c in scored_candidates
             ],
             "context_used": {
-                "previous_context": previous_context,
-                "next_context": next_context,
-                "global_context_preview": global_context[:800],
+                "type": "document_context_pack",
+                "context_pack_preview": context_pack[:800],
             },
         }
