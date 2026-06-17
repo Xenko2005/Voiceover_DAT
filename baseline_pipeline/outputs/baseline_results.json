@@ -1,0 +1,393 @@
+{
+  "module": "baseline_stt_translate_tts",
+  "status": "complete",
+  "description": "Baseline: Module 1 STT chunks -> direct translation -> direct TTS, without semantic chunking, context pack, adaptive length constraint, candidate scoring, or duration alignment.",
+  "input_file": "output_files\\ted_talk.json",
+  "model": "qwen3.5:2b",
+  "tts_engine": "edge-tts",
+  "voice": "vi-VN-HoaiMyNeural",
+  "num_processed_chunks": 25,
+  "summary": {
+    "avg_duration_error_ratio": 0.11105389518982968,
+    "avg_vi_units": 45.36
+  },
+  "results": [
+    {
+      "chunk_id": 1,
+      "source_text": "As your morning alarm blares, you mutter to yourself, Why did I set it so early?",
+      "baseline_translation": "Khi tiếng chuông báo thức của bạn vang lên, bạn thầm thì: \"Tại sao tôi lại đặt nó vào lúc sớm như vậy?",
+      "start_time": 7.2,
+      "end_time": 13.1,
+      "source_duration": 5.9,
+      "vi_units": 23,
+      "tts_duration": 5.88,
+      "duration_error_ratio": 0.0033898305084746542,
+      "files": {
+        "tts_mp3": "baseline_pipeline\\outputs\\segments\\chunk_0001_tts.mp3",
+        "tts_wav": "baseline_pipeline\\outputs\\segments\\chunk_0001_tts.wav"
+      }
+    },
+    {
+      "chunk_id": 2,
+      "source_text": "While brushing your teeth, you think, I need a haircut.",
+      "baseline_translation": "Khi chải răng, bạn nghĩ: \"Tôi cần cắt tóc\".",
+      "start_time": 13.5,
+      "end_time": 16.6,
+      "source_duration": 3.1,
+      "vi_units": 9,
+      "tts_duration": 3.72,
+      "duration_error_ratio": 0.20000000000000004,
+      "files": {
+        "tts_mp3": "baseline_pipeline\\outputs\\segments\\chunk_0002_tts.mp3",
+        "tts_wav": "baseline_pipeline\\outputs\\segments\\chunk_0002_tts.wav"
+      }
+    },
+    {
+      "chunk_id": 3,
+      "source_text": "Unless...",
+      "baseline_translation": "Trừ khi...",
+      "start_time": 16.9,
+      "end_time": 17.8,
+      "source_duration": 0.9,
+      "vi_units": 2,
+      "tts_duration": 1.488,
+      "duration_error_ratio": 0.6533333333333333,
+      "files": {
+        "tts_mp3": "baseline_pipeline\\outputs\\segments\\chunk_0003_tts.mp3",
+        "tts_wav": "baseline_pipeline\\outputs\\segments\\chunk_0003_tts.wav"
+      }
+    },
+    {
+      "chunk_id": 4,
+      "source_text": "Rushing out the front door, you reach for your keys and realize they're not there.",
+      "baseline_translation": "Đi ra khỏi cửa trước, bạn tìm kiếm chìa khóa nhưng không thấy chúng đâu.",
+      "start_time": 18.5,
+      "end_time": 23.9,
+      "source_duration": 5.4,
+      "vi_units": 15,
+      "tts_duration": 5.064,
+      "duration_error_ratio": 0.062222222222222276,
+      "files": {
+        "tts_mp3": "baseline_pipeline\\outputs\\segments\\chunk_0004_tts.mp3",
+        "tts_wav": "baseline_pipeline\\outputs\\segments\\chunk_0004_tts.wav"
+      }
+    },
+    {
+      "chunk_id": 5,
+      "source_text": "Frustrated, you shout, I can't do anything right! Just in time to notice your neighbor.",
+      "baseline_translation": "Bất mãn, bạn hét lên, tôi chẳng làm được gì cả! Chỉ kịp thời để phát hiện bạn có người bạn hàng xóm.",
+      "start_time": 24.0,
+      "end_time": 30.3,
+      "source_duration": 6.3,
+      "vi_units": 23,
+      "tts_duration": 7.968,
+      "duration_error_ratio": 0.2647619047619048,
+      "files": {
+        "tts_mp3": "baseline_pipeline\\outputs\\segments\\chunk_0005_tts.mp3",
+        "tts_wav": "baseline_pipeline\\outputs\\segments\\chunk_0005_tts.wav"
+      }
+    },
+    {
+      "chunk_id": 6,
+      "source_text": "Being caught talking to yourself can feel embarrassing, and some people even stigmatize this behavior as a sign of mental instability.",
+      "baseline_translation": "Việc bị bắt gặp đang nói chuyện với chính mình có thể khiến người ta cảm thấy xấu hổ, và một số người thậm chí coi đây là dấu hiệu của sự mất ổn định tâm lý.",
+      "start_time": 31.0,
+      "end_time": 39.3,
+      "source_duration": 8.3,
+      "vi_units": 37,
+      "tts_duration": 8.688,
+      "duration_error_ratio": 0.04674698795180721,
+      "files": {
+        "tts_mp3": "baseline_pipeline\\outputs\\segments\\chunk_0006_tts.mp3",
+        "tts_wav": "baseline_pipeline\\outputs\\segments\\chunk_0006_tts.wav"
+      }
+    },
+    {
+      "chunk_id": 7,
+      "source_text": "But decades of psychology research show that talking to yourself is completely normal. In fact, most if not all of us engage in some form of self-talk every single day. So why do we talk to ourselves? And does what we say matter?",
+      "baseline_translation": "Nhưng hàng thập kỷ nghiên cứu tâm lý cho thấy việc nói chuyện với chính mình hoàn toàn bình thường. Trên thực tế, đa số và có thể nói là tất cả chúng ta đều thực hiện một dạng tự nói trong mỗi ngày. Vậy tại sao chúng ta lại nói chuyện với chính mình? Và những gì chúng ta nói có quan trọng không?",
+      "start_time": 39.5,
+      "end_time": 57.7,
+      "source_duration": 18.2,
+      "vi_units": 65,
+      "tts_duration": 18.408,
+      "duration_error_ratio": 0.011428571428571536,
+      "files": {
+        "tts_mp3": "baseline_pipeline\\outputs\\segments\\chunk_0007_tts.mp3",
+        "tts_wav": "baseline_pipeline\\outputs\\segments\\chunk_0007_tts.wav"
+      }
+    },
+    {
+      "chunk_id": 8,
+      "source_text": "Self-talk refers to the narration inside your head, sometimes called inner speech. It differs from mental imagery, recalling facts and figures. Specifically, psychologists define self-talk as verbalized thoughts directed toward yourself or some facet of your life.",
+      "baseline_translation": "Tự nói là việc kể chuyện diễn ra trong đầu, đôi khi được gọi là lời nói nội tâm. Nó khác với hình ảnh trong đầu, việc nhớ lại các sự kiện và con số. Cụ thể, các nhà tâm lý định nghĩa tự nói là những suy nghĩ được phát biểu hướng về chính mình hoặc một khía cạnh nào đó của cuộc sống.",
+      "start_time": 58.3,
+      "end_time": 76.3,
+      "source_duration": 18.0,
+      "vi_units": 65,
+      "tts_duration": 17.496,
+      "duration_error_ratio": 0.028000000000000073,
+      "files": {
+        "tts_mp3": "baseline_pipeline\\outputs\\segments\\chunk_0008_tts.mp3",
+        "tts_wav": "baseline_pipeline\\outputs\\segments\\chunk_0008_tts.wav"
+      }
+    },
+    {
+      "chunk_id": 9,
+      "source_text": "This includes personal conversations like, I need to work on my free throw. But it also includes reflections you have throughout the day, like, the gym's crowded tonight.",
+      "baseline_translation": "Điều này bao gồm những cuộc trò chuyện cá nhân như, tôi cần tập trung vào việc làm free throw. Nhưng nó cũng bao gồm những suy nghĩ mà bạn đã có trong suốt ngày, như, phòng tập hôm nay rất đông người.",
+      "start_time": 77.2,
+      "end_time": 86.8,
+      "source_duration": 9.6,
+      "vi_units": 43,
+      "tts_duration": 12.0,
+      "duration_error_ratio": 0.25000000000000006,
+      "files": {
+        "tts_mp3": "baseline_pipeline\\outputs\\segments\\chunk_0009_tts.mp3",
+        "tts_wav": "baseline_pipeline\\outputs\\segments\\chunk_0009_tts.wav"
+      }
+    },
+    {
+      "chunk_id": 10,
+      "source_text": "I'll come back tomorrow. And while most self-talk in adults tends to be silent, speaking to yourself out loud also falls into this category.",
+      "baseline_translation": "Tôi sẽ quay lại ngày mai. Trong khi hầu hết những lời tự nói với bản thân của người lớn thường là im lặng, thì việc nói to với chính mình cũng thuộc vào nhóm này.",
+      "start_time": 87.1,
+      "end_time": 95.4,
+      "source_duration": 8.3,
+      "vi_units": 36,
+      "tts_duration": 9.816,
+      "duration_error_ratio": 0.18265060240963854,
+      "files": {
+        "tts_mp3": "baseline_pipeline\\outputs\\segments\\chunk_0010_tts.mp3",
+        "tts_wav": "baseline_pipeline\\outputs\\segments\\chunk_0010_tts.wav"
+      }
+    },
+    {
+      "chunk_id": 11,
+      "source_text": "In fact, psychologists believe our first experiences with self-talk are mostly vocal, as children often speak to themselves out loud as they play. In the 1930s, Russian psychologist Lev Vygotsky hypothesized that this kind of speech was actually key to development.",
+      "baseline_translation": "Thực ra, các nhà tâm lý tin rằng những trải nghiệm đầu tiên với lời nói nội tâm chủ yếu là bằng lời, vì trẻ em thường nói chuyện với chính mình khi chơi. Vào những năm 1930, nhà tâm lý học Nga Lev Vygotsky đã giả định rằng loại lời nói này thực sự là chìa khóa cho sự phát triển.",
+      "start_time": 96.0,
+      "end_time": 113.0,
+      "source_duration": 17.0,
+      "vi_units": 62,
+      "tts_duration": 16.8,
+      "duration_error_ratio": 0.0117647058823529,
+      "files": {
+        "tts_mp3": "baseline_pipeline\\outputs\\segments\\chunk_0011_tts.mp3",
+        "tts_wav": "baseline_pipeline\\outputs\\segments\\chunk_0011_tts.wav"
+      }
+    },
+    {
+      "chunk_id": 12,
+      "source_text": "By repeating conversations they've had with adults, children practice managing their behaviors and emotions on their own.",
+      "baseline_translation": "Bằng cách lặp lại những cuộc trò chuyện mà họ đã có với người lớn, trẻ em rèn luyện khả năng tự quản lý hành vi và cảm xúc của mình.",
+      "start_time": 113.3,
+      "end_time": 120.4,
+      "source_duration": 7.1,
+      "vi_units": 31,
+      "tts_duration": 7.536,
+      "duration_error_ratio": 0.06140845070422535,
+      "files": {
+        "tts_mp3": "baseline_pipeline\\outputs\\segments\\chunk_0012_tts.mp3",
+        "tts_wav": "baseline_pipeline\\outputs\\segments\\chunk_0012_tts.wav"
+      }
+    },
+    {
+      "chunk_id": 13,
+      "source_text": "Then, as they grow older, this outward self-talk tends to become internalized, morphing into a private inner dialogue. We know this internal self-talk is important and can help you plan, work through difficult situations and even motivate you throughout the day.",
+      "baseline_translation": "Sau đó, khi chúng ta lớn tuổi, lời nói bên ngoài này thường trở thành nội tâm hóa, biến đổi thành một cuộc đối thoại nội tâm riêng tư. Chúng ta biết rằng lời nói nội tâm này rất quan trọng và có thể giúp bạn lập kế hoạch, vượt qua các tình huống khó khăn và thậm chí động viên bạn trong suốt ngày.",
+      "start_time": 120.7,
+      "end_time": 137.0,
+      "source_duration": 16.3,
+      "vi_units": 65,
+      "tts_duration": 16.392,
+      "duration_error_ratio": 0.005644171779141028,
+      "files": {
+        "tts_mp3": "baseline_pipeline\\outputs\\segments\\chunk_0013_tts.mp3",
+        "tts_wav": "baseline_pipeline\\outputs\\segments\\chunk_0013_tts.wav"
+      }
+    },
+    {
+      "chunk_id": 14,
+      "source_text": "But studying self-talk can be difficult. It relies on study subjects clearly tracking a behavior that's spontaneous and often done without conscious control. For this reason, scientists are still working to answer basic questions like, why do some people self-talk more than others? What areas of the brain are activated during self-talk? And how does this activation differ from normal conversation? One thing we know for certain, however, is that what you say in these conversations can have real impact on your attitude and performance.",
+      "baseline_translation": "Tuy nhiên, việc nghiên cứu về tự nói chuyện với bản thân có thể khá khó khăn. Nó dựa vào việc các chủ đề nghiên cứu phải theo dõi một hành vi mang tính tự phát và thường được thực hiện mà không cần sự điều khiển ý thức. Chính vì vậy, các nhà khoa học vẫn đang cố gắng trả lời những câu hỏi cơ bản như: Tại sao một số người tự nói chuyện với bản thân nhiều hơn những người khác? Các vùng nào của não bộ được kích hoạt trong quá trình tự nói chuyện? Sự kích hoạt này khác với cuộc trò chuyện bình thường như thế nào? Tuy nhiên, điều chắc chắn là gì là những gì bạn nói trong những cuộc trò chuyện này có thể có tác động thực sự đến thái độ và hiệu suất của bạn.",
+      "start_time": 137.3,
+      "end_time": 172.5,
+      "source_duration": 35.2,
+      "vi_units": 146,
+      "tts_duration": 36.792,
+      "duration_error_ratio": 0.045227272727272685,
+      "files": {
+        "tts_mp3": "baseline_pipeline\\outputs\\segments\\chunk_0014_tts.mp3",
+        "tts_wav": "baseline_pipeline\\outputs\\segments\\chunk_0014_tts.wav"
+      }
+    },
+    {
+      "chunk_id": 15,
+      "source_text": "Engaging in self-talk that's instructional or motivational has been shown to increase focus, boost self-esteem, and help tackle everyday tasks. For example, one study of collegiate tennis players found that incorporating instructional self-talk into practice increased their concentration and accuracy.",
+      "baseline_translation": "Thực hành tự nói với nội dung hướng dẫn hoặc động viên đã được chứng minh giúp tăng sự tập trung, nâng cao tự tin bản thân và hỗ trợ vượt qua các nhiệm vụ hàng ngày. Ví dụ, một nghiên cứu với các vận động viên tennis đại học cho thấy việc tích hợp tự nói hướng dẫn vào quá trình tập luyện đã tăng cường sự tập trung và độ chính xác của họ.",
+      "start_time": 173.3,
+      "end_time": 194.7,
+      "source_duration": 21.4,
+      "vi_units": 76,
+      "tts_duration": 18.336,
+      "duration_error_ratio": 0.14317757009345797,
+      "files": {
+        "tts_mp3": "baseline_pipeline\\outputs\\segments\\chunk_0015_tts.mp3",
+        "tts_wav": "baseline_pipeline\\outputs\\segments\\chunk_0015_tts.wav"
+      }
+    },
+    {
+      "chunk_id": 16,
+      "source_text": "And just as chatting to a friend can help decrease stress, speaking directly to yourself may also help you regulate your emotions. Distanced self-talk is when you talk to yourself, as if in conversation with another person. So rather than, I'm gonna crush this exam, you might think, Caleb, you are prepared for this test.",
+      "baseline_translation": "Và giống như trò chuyện với bạn bè có thể giúp giảm căng thẳng, việc nói trực tiếp với chính mình cũng có thể giúp bạn điều chỉnh cảm xúc. Tự nói chuyện với mình ở khoảng cách xa là khi bạn nói chuyện như đang trò chuyện với một người khác. Do đó thay vì nghĩ \"Tôi sẽ làm hỏng bài thi này\", bạn có thể nghĩ \"Caleb, bạn đã chuẩn bị cho bài kiểm tra này rồi\".",
+      "start_time": 195.1,
+      "end_time": 218.8,
+      "source_duration": 23.7,
+      "vi_units": 79,
+      "tts_duration": 20.568,
+      "duration_error_ratio": 0.13215189873417713,
+      "files": {
+        "tts_mp3": "baseline_pipeline\\outputs\\segments\\chunk_0016_tts.mp3",
+        "tts_wav": "baseline_pipeline\\outputs\\segments\\chunk_0016_tts.wav"
+      }
+    },
+    {
+      "chunk_id": 17,
+      "source_text": "One study found that this kind of self-talk was especially beneficial for reducing stress when engaging in anxiety-inducing tasks, such as meeting new people or public speaking.",
+      "baseline_translation": "Một nghiên cứu cho thấy việc tự nói chuyện với bản thân này đặc biệt hữu ích trong việc giảm căng thẳng khi thực hiện các nhiệm vụ gây lo lắng, như gặp gỡ người mới hoặc phát biểu trước đám đông.",
+      "start_time": 219.0,
+      "end_time": 230.3,
+      "source_duration": 11.3,
+      "vi_units": 42,
+      "tts_duration": 9.552,
+      "duration_error_ratio": 0.15469026548672576,
+      "files": {
+        "tts_mp3": "baseline_pipeline\\outputs\\segments\\chunk_0017_tts.mp3",
+        "tts_wav": "baseline_pipeline\\outputs\\segments\\chunk_0017_tts.wav"
+      }
+    },
+    {
+      "chunk_id": 18,
+      "source_text": "But where positive self-talk can help you, negative self-talk can harm you. Most people are critical of themselves occasionally. But when this behavior gets too frequent or excessively negative, it can become toxic.",
+      "baseline_translation": "Tuy nhiên, nơi mà lời nói tích cực có thể giúp bạn, lời nói tiêu cực lại có thể gây hại cho bạn. Phần lớn mọi người đều thường xuyên tự phê bình bản thân. Tuy nhiên, khi hành vi này diễn ra quá thường xuyên hoặc quá tiêu cực, nó có thể trở thành độc hại.",
+      "start_time": 230.6,
+      "end_time": 244.5,
+      "source_duration": 13.9,
+      "vi_units": 57,
+      "tts_duration": 16.296,
+      "duration_error_ratio": 0.17237410071942438,
+      "files": {
+        "tts_mp3": "baseline_pipeline\\outputs\\segments\\chunk_0018_tts.mp3",
+        "tts_wav": "baseline_pipeline\\outputs\\segments\\chunk_0018_tts.wav"
+      }
+    },
+    {
+      "chunk_id": 19,
+      "source_text": "High levels of negative self-talk are often predictive of anxiety in children and adults. And those who constantly blame themselves for their problems and ruminate on those situations typically experience more intense feelings of depression.",
+      "baseline_translation": "Niveau cao của suy nghĩ tiêu cực thường là dấu hiệu dự báo của lo âu ở trẻ em và người lớn. Và những người luôn tự trách mình cho các vấn đề của họ và suy nghĩ liên tục về các tình huống đó thường trải qua những cảm giác trầm cảm mạnh mẽ hơn.",
+      "start_time": 245.0,
+      "end_time": 259.5,
+      "source_duration": 14.5,
+      "vi_units": 56,
+      "tts_duration": 13.8,
+      "duration_error_ratio": 0.04827586206896547,
+      "files": {
+        "tts_mp3": "baseline_pipeline\\outputs\\segments\\chunk_0019_tts.mp3",
+        "tts_wav": "baseline_pipeline\\outputs\\segments\\chunk_0019_tts.wav"
+      }
+    },
+    {
+      "chunk_id": 20,
+      "source_text": "Today, there's a field of psychological treatment called cognitive behavioral therapy, or CBT, which is partially focused on regulating the tone of self-talk.",
+      "baseline_translation": "Hôm nay, có một lĩnh vực trị liệu tâm lý được gọi là liệu pháp hành vi nhận thức, hay còn được gọi là CBT, trong đó một phần tập trung vào việc điều chỉnh giọng nói nội tâm.",
+      "start_time": 260.1,
+      "end_time": 271.5,
+      "source_duration": 11.4,
+      "vi_units": 39,
+      "tts_duration": 11.04,
+      "duration_error_ratio": 0.03157894736842116,
+      "files": {
+        "tts_mp3": "baseline_pipeline\\outputs\\segments\\chunk_0020_tts.mp3",
+        "tts_wav": "baseline_pipeline\\outputs\\segments\\chunk_0020_tts.wav"
+      }
+    },
+    {
+      "chunk_id": 21,
+      "source_text": "Cognitive behavioral therapists often teach strategies to identify cycles of negative thoughts and replace them with neutral or more compassionate reflections.",
+      "baseline_translation": "Các nhà trị liệu hành vi nhận thức thường hướng dẫn các chiến lược để nhận diện các chu kỳ suy nghĩ tiêu cực và thay thế chúng bằng những suy nghĩ trung lập hoặc mang tính đồng cảm hơn.",
+      "start_time": 271.9,
+      "end_time": 282.3,
+      "source_duration": 10.4,
+      "vi_units": 40,
+      "tts_duration": 10.248,
+      "duration_error_ratio": 0.014615384615384714,
+      "files": {
+        "tts_mp3": "baseline_pipeline\\outputs\\segments\\chunk_0021_tts.mp3",
+        "tts_wav": "baseline_pipeline\\outputs\\segments\\chunk_0021_tts.wav"
+      }
+    },
+    {
+      "chunk_id": 22,
+      "source_text": "Over time, these tools can improve one's mental health.",
+      "baseline_translation": "Sau một thời gian, các công cụ này có thể cải thiện sức khỏe tinh thần của con người.",
+      "start_time": 282.5,
+      "end_time": 287.0,
+      "source_duration": 4.5,
+      "vi_units": 19,
+      "tts_duration": 4.5,
+      "duration_error_ratio": 0.0,
+      "files": {
+        "tts_mp3": "baseline_pipeline\\outputs\\segments\\chunk_0022_tts.mp3",
+        "tts_wav": "baseline_pipeline\\outputs\\segments\\chunk_0022_tts.wav"
+      }
+    },
+    {
+      "chunk_id": 23,
+      "source_text": "So the next time you find yourself chatting with yourself, remember to be kind.",
+      "baseline_translation": "Khi bạn gặp lần nữa tình huống trò chuyện với chính mình, hãy nhớ đối xử với bản thân một cách tử tế.",
+      "start_time": 287.4,
+      "end_time": 293.1,
+      "source_duration": 5.7,
+      "vi_units": 23,
+      "tts_duration": 5.7,
+      "duration_error_ratio": 0.0,
+      "files": {
+        "tts_mp3": "baseline_pipeline\\outputs\\segments\\chunk_0023_tts.mp3",
+        "tts_wav": "baseline_pipeline\\outputs\\segments\\chunk_0023_tts.wav"
+      }
+    },
+    {
+      "chunk_id": 24,
+      "source_text": "That inner voice is a partner you'll be talking to for many years to come.",
+      "baseline_translation": "Đó là một giọng nói bên trong bạn sẽ đối thoại với nó trong nhiều năm tới.",
+      "start_time": 293.4,
+      "end_time": 297.6,
+      "source_duration": 4.2,
+      "vi_units": 17,
+      "tts_duration": 4.728,
+      "duration_error_ratio": 0.1257142857142856,
+      "files": {
+        "tts_mp3": "baseline_pipeline\\outputs\\segments\\chunk_0024_tts.mp3",
+        "tts_wav": "baseline_pipeline\\outputs\\segments\\chunk_0024_tts.wav"
+      }
+    },
+    {
+      "chunk_id": 25,
+      "source_text": "Do you ever have trouble concentrating on and completing tasks? Learn more about the relationship between self-talk and procrastination with this video. Or for more actionable, science-based advice on how to build strengths of heart, mind, and will, visit ed.ted.com slash buildcharacter.",
+      "baseline_translation": "Bạn có bao giờ gặp khó khăn trong việc tập trung hoàn thành các nhiệm vụ? Tìm hiểu thêm về mối quan hệ giữa tự nói với sự trì hoãn trong video này. Hoặc để nhận được lời khuyên có tính thực tiễn, dựa trên khoa học về cách xây dựng sức mạnh của tim, trí tuệ và ý chí, hãy truy cập ed.ted.com/slash/buildcharacter.",
+      "start_time": 299.3,
+      "end_time": 317.1,
+      "source_duration": 17.8,
+      "vi_units": 64,
+      "tts_duration": 20.064,
+      "duration_error_ratio": 0.12719101123595503,
+      "files": {
+        "tts_mp3": "baseline_pipeline\\outputs\\segments\\chunk_0025_tts.mp3",
+        "tts_wav": "baseline_pipeline\\outputs\\segments\\chunk_0025_tts.wav"
+      }
+    }
+  ],
+  "dubbed_wav": "baseline_pipeline\\outputs\\baseline_dubbed_audio.wav",
+  "dubbed_mp3": "baseline_pipeline\\outputs\\baseline_dubbed_audio.mp3"
+}

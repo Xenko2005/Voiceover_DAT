@@ -1,0 +1,3 @@
+file 'D:/FPT Subject/DAT/Project/Voiceover_DAT/baseline_pipeline/outputs/segments/chunk_0025_parts/part_001.wav'
+file 'D:/FPT Subject/DAT/Project/Voiceover_DAT/baseline_pipeline/outputs/segments/chunk_0025_parts/part_002.wav'
+file 'D:/FPT Subject/DAT/Project/Voiceover_DAT/baseline_pipeline/outputs/segments/chunk_0025_parts/part_003.wav'
