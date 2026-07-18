@@ -2,3 +2,8 @@ numpy
 openai-whisper
 silero-vad
 torch
+datasets
+soundfile
+requests
+edge-tts
+huggingface_hub

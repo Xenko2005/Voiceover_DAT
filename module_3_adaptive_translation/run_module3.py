@@ -2,7 +2,13 @@ import os
 import json
 import csv
 import argparse
+import sys
 from adaptive_length_translation import SourceSegment, AdaptiveLengthTranslator
+
+
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    sys.stderr.reconfigure(encoding="utf-8", errors="replace")
 
 
 # =====================================================
@@ -284,6 +290,13 @@ def main():
         help="Giới hạn độ dài full transcript đưa vào Context Pack."
     )
 
+    parser.add_argument(
+        "--optimizer-config",
+        type=str,
+        default=None,
+        help="Optional JSON produced by train_phost_module_optimizers.py.",
+    )
+
     args = parser.parse_args()
 
     if not os.path.exists(args.input):
@@ -311,6 +324,12 @@ def main():
 
     print(f"Số segment sẽ xử lý: {len(segments_to_process)}")
 
+    optimizer_config = None
+    if args.optimizer_config:
+        with open(args.optimizer_config, "r", encoding="utf-8") as f:
+            optimizer_config = json.load(f)
+        print("Đã nạp optimizer config:", args.optimizer_config)
+
     translator = AdaptiveLengthTranslator(
         tts_ceiling=5.0,
         margin=1,
@@ -318,6 +337,7 @@ def main():
         mu_flu=0.3,
         ollama_model=args.model,
         use_llm_judge=args.use_llm_judge,
+        optimizer_config=optimizer_config,
     )
 
     # Build full transcript từ toàn bộ bài

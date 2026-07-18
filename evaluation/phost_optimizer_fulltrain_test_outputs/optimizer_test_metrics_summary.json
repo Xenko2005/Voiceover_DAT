@@ -1,0 +1,62 @@
+{
+  "num_test_rows": 1976,
+  "length_prediction": {
+    "baseline_rule_abs_error": {
+      "mean": 3.5714,
+      "median": 3.0,
+      "max": 28
+    },
+    "proposed_learned_abs_error": {
+      "mean": 2.962,
+      "median": 2.0,
+      "max": 23
+    },
+    "baseline_rule_mape": 0.1566,
+    "proposed_learned_mape": 0.1348,
+    "mae_reduction_units": 0.6093,
+    "mae_reduction_percent": 17.06
+  },
+  "adaptive_length_constraint": {
+    "baseline_default_constraint_abs_error": {
+      "mean": 3.5106,
+      "median": 3.0,
+      "max": 29
+    },
+    "proposed_tuned_constraint_abs_error": {
+      "mean": 2.9777,
+      "median": 2.0,
+      "max": 22
+    },
+    "baseline_under_limit_mae": 1.7621,
+    "proposed_under_limit_mae": 1.4297,
+    "baseline_over_limit_mae": 1.7485,
+    "proposed_over_limit_mae": 1.5481,
+    "constraint_mae_reduction_units": 0.5329,
+    "constraint_mae_reduction_percent": 15.18
+  },
+  "semantic_chunking_simulation": {
+    "fragment_words": 4,
+    "expected_segments": 1976,
+    "baseline_default_produced_segments": 2703,
+    "proposed_tuned_produced_segments": 2651,
+    "baseline_boundary_error": 0.3679,
+    "proposed_boundary_error": 0.3416,
+    "baseline_force_release_rate": 0.1535,
+    "proposed_force_release_rate": 0.0215
+  },
+  "runtime_config_used": {
+    "tts_ceiling": 6.5,
+    "margin": 1,
+    "lambda_dur": 0.6,
+    "mu_flu": 0.3
+  },
+  "semantic_chunking_config_used": {
+    "min_words": 3,
+    "max_words": 30,
+    "max_duration": 12.0,
+    "max_chunks": 8,
+    "simulated_boundary_error": 0.2574,
+    "force_release_rate": 0.0189,
+    "score": 0.2621
+  }
+}

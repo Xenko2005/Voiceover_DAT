@@ -1,6 +1,14 @@
 __pycache__/
 *.pyc
-module_3_adaptive_translation/outputs/
+module_3_adaptive_translation/outputs/*
+!module_3_adaptive_translation/outputs/phost_optimizer_config_fulltrain.json
 module_4_tts_alignment/outputs/
+baseline_pipeline/outputs/
+module_2_semantic_chunking/outputs/
+evaluation/outputs/
+experiment_outputs/
+datasets/
+runtime_hf_cache/
+runtime_hf_samples/
 *.mp3
 *.wav

@@ -1,9 +1,15 @@
 import os
 import json
 import argparse
+import sys
 from typing import List, Dict, Any
 
 from semantic_chunk_buffer import ASRChunk, SemanticChunkBuffer
+
+
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    sys.stderr.reconfigure(encoding="utf-8", errors="replace")
 
 
 # =====================================================

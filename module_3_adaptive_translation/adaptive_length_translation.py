@@ -42,13 +42,25 @@ class AdaptiveLengthTranslator:
         mu_flu: float = 0.3,
         ollama_model: str = "qwen3.5:2b",
         use_llm_judge: bool = False,
+        optimizer_config: Optional[Dict] = None,
     ):
+        optimizer_config = optimizer_config or {}
+        runtime_config = optimizer_config.get("recommended_runtime", {})
+
         self.tts_ceiling = tts_ceiling
         self.margin = margin
         self.lambda_dur = lambda_dur
         self.mu_flu = mu_flu
         self.ollama_model = ollama_model
         self.use_llm_judge = use_llm_judge
+        self.optimizer_config = optimizer_config
+        self.length_model = optimizer_config.get("length_model")
+
+        if runtime_config:
+            self.tts_ceiling = float(runtime_config.get("tts_ceiling", self.tts_ceiling))
+            self.margin = int(runtime_config.get("margin", self.margin))
+            self.lambda_dur = float(runtime_config.get("lambda_dur", self.lambda_dur))
+            self.mu_flu = float(runtime_config.get("mu_flu", self.mu_flu))
 
     # =====================================================
     # Basic utilities
@@ -403,15 +415,19 @@ Chỉ trả về CONTEXT PACK bằng tiếng Việt. Không giải thích thêm.
 
         proper_nouns = re.findall(r"\b[A-Z][a-z]+\b", text)
         has_proper_noun = len(proper_nouns) > 1
+        char_count = len(text)
+        punctuation_count = len(re.findall(r"[,.?!;:]", text))
 
         return {
             "wen": wen,
+            "char_count": char_count,
             "duration": segment.duration,
             "speech_rate": speech_rate,
             "has_subordinate": has_subordinate,
             "is_question": is_question,
             "has_number": has_number,
             "has_proper_noun": has_proper_noun,
+            "punctuation_count": punctuation_count,
         }
 
     # =====================================================
@@ -445,10 +461,38 @@ Chỉ trả về CONTEXT PACK bằng tiếng Việt. Không giải thích thêm.
         return max(0.9, min(k, 1.7))
 
     def predict_len_vi(self, segment: SourceSegment) -> int:
+        if self.length_model:
+            predicted = self.predict_len_vi_with_trained_model(segment)
+            if predicted is not None:
+                return predicted
+
         features = self.extract_features(segment)
         k_dynamic = self.estimate_dynamic_k(features)
         pred_len = round(features["wen"] * k_dynamic)
         return max(pred_len, 1)
+
+    def predict_len_vi_with_trained_model(self, segment: SourceSegment) -> Optional[int]:
+        try:
+            model = self.length_model
+            feature_names = model["feature_names"]
+            means = model["feature_means"]
+            scales = model["feature_scales"]
+            coefficients = model["coefficients"]
+            intercept = float(model["intercept"])
+            raw_features = self.extract_features(segment)
+            value = intercept
+
+            for index, name in enumerate(feature_names):
+                raw = raw_features.get(name, 0.0)
+                if isinstance(raw, bool):
+                    raw = 1.0 if raw else 0.0
+                scaled = (float(raw) - float(means[index])) / max(float(scales[index]), 1e-8)
+                value += float(coefficients[index]) * scaled
+
+            return max(1, int(round(value)))
+        except Exception as error:
+            print("[WARN] Trained length estimator failed, using rule-based fallback:", error)
+            return None
 
     def calculate_max_vi_final(self, segment: SourceSegment, pred_len_vi: int) -> int:
         physical_limit = segment.duration * self.tts_ceiling

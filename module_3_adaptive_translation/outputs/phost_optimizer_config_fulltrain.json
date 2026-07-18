@@ -1,0 +1,92 @@
+{
+  "dataset": "PhoST",
+  "text_root": "D:\\datasets\\PhoST_subset\\text_data",
+  "train_split": "train",
+  "dev_split": "dev",
+  "num_train_rows": 327370,
+  "num_dev_rows": 1935,
+  "length_model": {
+    "type": "ridge_linear_regression",
+    "target": "vietnamese_units",
+    "alpha": 5.0,
+    "feature_names": [
+      "wen",
+      "char_count",
+      "duration",
+      "speech_rate",
+      "has_subordinate",
+      "is_question",
+      "has_number",
+      "has_proper_noun",
+      "punctuation_count"
+    ],
+    "feature_means": [
+      16.285499587622567,
+      90.17964688273207,
+      5.512991263707733,
+      3.289361405335721,
+      0.414320188166295,
+      0.10209854293307268,
+      0.08317805541130831,
+      0.2165073158811131,
+      2.218049912942542
+    ],
+    "feature_scales": [
+      11.889166261291894,
+      67.02454857330613,
+      5.103021627726183,
+      1.087537341489474,
+      0.4926042730672747,
+      0.3027778566266365,
+      0.276151166046781,
+      0.41186393147569716,
+      1.575974990787147
+    ],
+    "intercept": 20.79610226960333,
+    "coefficients": [
+      2.533197861595132,
+      11.476371572702519,
+      0.5319229302156374,
+      -0.2850090818649431,
+      -0.0002855724414483217,
+      0.10686286211874445,
+      -0.08869553416921665,
+      -0.20050549129278403,
+      0.19888993427678073
+    ]
+  },
+  "length_model_metrics": {
+    "learned_mae_units": 2.5814,
+    "rule_mae_units": 3.1628,
+    "learned_mape": 0.1435,
+    "rule_mape": 0.1598
+  },
+  "semantic_chunking": {
+    "min_words": 3,
+    "max_words": 30,
+    "max_duration": 12.0,
+    "max_chunks": 8,
+    "simulated_boundary_error": 0.2574,
+    "force_release_rate": 0.0189,
+    "score": 0.2621
+  },
+  "recommended_runtime": {
+    "tts_ceiling": 6.5,
+    "margin": 1,
+    "lambda_dur": 0.6,
+    "mu_flu": 0.3
+  },
+  "constraint_tuning": {
+    "tts_ceiling": 6.5,
+    "margin": 1,
+    "constraint_score": 1.801,
+    "constraint_mae_units": 2.6899,
+    "under_limit_mae_units": 0.9121,
+    "over_limit_mae_units": 1.7778
+  },
+  "notes": [
+    "This trains/tunes lightweight pipeline modules, not an end-to-end neural dubbing model.",
+    "Length model predicts Vietnamese unit count from English text and source duration.",
+    "Semantic chunking parameters are tuned by simulated ASR fragmentation."
+  ]
+}
