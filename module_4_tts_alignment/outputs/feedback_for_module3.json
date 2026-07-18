@@ -1,0 +1,246 @@
+{
+  "module": "module_4_feedback_for_module_3",
+  "description": "Feedback duration từ TTS thật để Module 3 biết segment nào cần dịch ngắn/dài hơn.",
+  "items": [
+    {
+      "segment_id": 1,
+      "source_text": "As your morning alarm blares, you mutter to yourself, Why did I set it so early?",
+      "best_translation": "Tại sao tôi bật chuông báo thức quá sớm?",
+      "source_duration": 5.8999999999999995,
+      "raw_tts_duration": 3.024,
+      "speed_factor": 0.512542372881356,
+      "suggestion": "allow_translation_longer",
+      "reason": "TTS gốc ngắn hơn source duration khá nhiều, có thể dịch tự nhiên hơn/dài hơn."
+    },
+    {
+      "segment_id": 2,
+      "source_text": "While brushing your teeth, you think, I need a haircut.",
+      "best_translation": "Trong lúc chải răng, bạn thầm nghĩ: Tôi cần cắt tóc.",
+      "source_duration": 3.1000000000000014,
+      "raw_tts_duration": 4.08,
+      "speed_factor": 1.3161290322580639,
+      "suggestion": "make_translation_shorter",
+      "reason": "TTS gốc dài hơn source duration quá nhiều, phải tăng tốc đáng kể."
+    },
+    {
+      "segment_id": 3,
+      "source_text": "Unless... Rushing out the front door, you reach for your keys and realize they're not there.",
+      "best_translation": "Bạn mở cửa trước và thấy chìa khóa không có.",
+      "source_duration": 7.0,
+      "raw_tts_duration": 3.456,
+      "speed_factor": 0.4937142857142857,
+      "suggestion": "allow_translation_longer",
+      "reason": "TTS gốc ngắn hơn source duration khá nhiều, có thể dịch tự nhiên hơn/dài hơn."
+    },
+    {
+      "segment_id": 4,
+      "source_text": "Frustrated, you shout, I can't do anything right! Just in time to notice your neighbor.",
+      "best_translation": "Bạn giận dữ, hét lên, nhưng tôi không thể làm gì cả! Chỉ kịp quan sát bạn láng giềng.",
+      "source_duration": 6.300000000000001,
+      "raw_tts_duration": 7.08,
+      "speed_factor": 1.1238095238095236,
+      "suggestion": "ok",
+      "reason": "TTS duration tương đối phù hợp với source duration."
+    },
+    {
+      "segment_id": 5,
+      "source_text": "Being caught talking to yourself can feel embarrassing, and some people even stigmatize this behavior as a sign of mental instability.",
+      "best_translation": "Việc bị bắt gặp khi nói chuyện với bản thân có thể khiến người nghe cảm thấy xấu hổ.",
+      "source_duration": 8.299999999999997,
+      "raw_tts_duration": 5.088,
+      "speed_factor": 0.6130120481927713,
+      "suggestion": "allow_translation_longer",
+      "reason": "TTS gốc ngắn hơn source duration khá nhiều, có thể dịch tự nhiên hơn/dài hơn."
+    },
+    {
+      "segment_id": 6,
+      "source_text": "But decades of psychology research show that talking to yourself is completely normal. In fact, most if not all of us engage in some form of self-talk every single day. So why do we talk to ourselves? And does what we say matter?",
+      "best_translation": "Các nghiên cứu tâm lý hàng thập kỷ cho thấy việc tự nói chuyện với bản thân hoàn toàn bình thường.",
+      "source_duration": 18.200000000000003,
+      "raw_tts_duration": 5.52,
+      "speed_factor": 0.3032967032967032,
+      "suggestion": "allow_translation_longer",
+      "reason": "TTS gốc ngắn hơn source duration khá nhiều, có thể dịch tự nhiên hơn/dài hơn."
+    },
+    {
+      "segment_id": 7,
+      "source_text": "Self-talk refers to the narration inside your head, sometimes called inner speech. It differs from mental imagery, recalling facts and figures. Specifically, psychologists define self-talk as verbalized thoughts directed toward yourself or some facet of your life.",
+      "best_translation": "Tự nói chuyện là những lời kể diễn ra bên trong đầu, đôi khi còn được gọi là lời nói nội tâm. Nó khác với hình ảnh trong đầu, việc nhớ lại các sự kiện và con số. Cụ thể, các nhà tâm lý định nghĩa tự nói chuyện là những suy nghĩ được phát biểu hướng về chính mình hoặc một khía cạnh nào đó của cuộc đời.",
+      "source_duration": 18.0,
+      "raw_tts_duration": 18.36,
+      "speed_factor": 1.02,
+      "suggestion": "ok",
+      "reason": "TTS duration tương đối phù hợp với source duration."
+    },
+    {
+      "segment_id": 8,
+      "source_text": "This includes personal conversations like, I need to work on my free throw. But it also includes reflections you have throughout the day, like, the gym's crowded tonight.",
+      "best_translation": "Các cuộc trò chuyện cá nhân như, tôi cần tập trung vào cú ném tự do. Nhưng cũng bao gồm những suy nghĩ bạn có trong ngày, như, cầu thủ bóng rổ đang tập luyện.",
+      "source_duration": 9.599999999999994,
+      "raw_tts_duration": 10.512,
+      "speed_factor": 1.0950000000000006,
+      "suggestion": "ok",
+      "reason": "TTS duration tương đối phù hợp với source duration."
+    },
+    {
+      "segment_id": 9,
+      "source_text": "I'll come back tomorrow. And while most self-talk in adults tends to be silent, speaking to yourself out loud also falls into this category.",
+      "best_translation": "Tôi sẽ quay lại ngày mai. Trong khi hầu hết những lời tự nói chuyện của người lớn đều im lặng, việc nói chuyện với bản thân ra ngoài cũng thuộc nhóm này.",
+      "source_duration": 8.300000000000011,
+      "raw_tts_duration": 9.24,
+      "speed_factor": 1.1132530120481914,
+      "suggestion": "ok",
+      "reason": "TTS duration tương đối phù hợp với source duration."
+    },
+    {
+      "segment_id": 10,
+      "source_text": "In fact, psychologists believe our first experiences with self-talk are mostly vocal, as children often speak to themselves out loud as they play. In the 1930s, Russian psychologist Lev Vygotsky hypothesized that this kind of speech was actually key to development.",
+      "best_translation": "Thực ra, các nhà tâm lý tin rằng những trải nghiệm đầu tiên với tự nói chuyện chủ yếu là nói to, vì trẻ em thường nói chuyện với bản thân khi chơi đùa. Vào những năm 1930, nhà tâm lý học Nga Lev Vygotsky cho rằng loại lời nói này thực sự là chìa khóa cho sự phát triển.",
+      "source_duration": 17.0,
+      "raw_tts_duration": 16.416,
+      "speed_factor": 0.9656470588235294,
+      "suggestion": "ok",
+      "reason": "TTS duration tương đối phù hợp với source duration."
+    },
+    {
+      "segment_id": 11,
+      "source_text": "By repeating conversations they've had with adults, children practice managing their behaviors and emotions on their own.",
+      "best_translation": "Việc lặp lại những cuộc trò chuyện với người lớn giúp họ tự quản lý hành vi và cảm xúc.",
+      "source_duration": 7.1000000000000085,
+      "raw_tts_duration": 5.304,
+      "speed_factor": 0.7470422535211259,
+      "suggestion": "allow_translation_longer",
+      "reason": "TTS gốc ngắn hơn source duration khá nhiều, có thể dịch tự nhiên hơn/dài hơn."
+    },
+    {
+      "segment_id": 12,
+      "source_text": "Then, as they grow older, this outward self-talk tends to become internalized, morphing into a private inner dialogue. We know this internal self-talk is important and can help you plan, work through difficult situations and even motivate you throughout the day.",
+      "best_translation": "Khi trưởng thành, lời nói chuyện ngoài kia thường chuyển hóa thành một cuộc đối thoại nội tâm riêng tư. Chúng ta biết rằng lời nói chuyện nội tâm này rất quan trọng và có thể giúp bạn lập kế hoạch, vượt qua các tình huống khó khăn và thậm chí là động viên bạn trong suốt ngày hôm nay.",
+      "source_duration": 16.299999999999997,
+      "raw_tts_duration": 14.688,
+      "speed_factor": 0.9011042944785278,
+      "suggestion": "ok",
+      "reason": "TTS duration tương đối phù hợp với source duration."
+    },
+    {
+      "segment_id": 13,
+      "source_text": "But studying self-talk can be difficult. It relies on study subjects clearly tracking a behavior that's spontaneous and often done without conscious control. For this reason, scientists are still working to answer basic questions like, why do some people self-talk more than others? What areas of the brain are activated during self-talk? And how does this activation differ from normal conversation? One thing we know for certain, however, is that what you say in these conversations can have real impact on your attitude and performance.",
+      "best_translation": "Việc nghiên cứu về tự nói chuyện có thể gặp khó khăn. Nó dựa trên việc người nghiên cứu phải theo dõi một hành vi xuất phát tự nhiên và thường được thực hiện mà không có sự kiểm soát chủ ý. Vì vậy, các nhà khoa học vẫn đang cố gắng trả lời các câu hỏi cơ bản như, tại sao một số người tự nói chuyện nhiều hơn những người khác? Các khu vực nào của não bộ được kích hoạt trong khi tự nói chuyện? Và sự kích hoạt này có khác biệt như thế nào so với cuộc trò chuyện bình thường? Một điều chắc chắn chúng ta biết là những gì bạn nói trong những cuộc trò chuyện này có thể có tác động thực tế đến thái độ và hiệu suất của bạn.",
+      "source_duration": 35.19999999999999,
+      "raw_tts_duration": 33.792,
+      "speed_factor": 0.9600000000000004,
+      "suggestion": "ok",
+      "reason": "TTS duration tương đối phù hợp với source duration."
+    },
+    {
+      "segment_id": 14,
+      "source_text": "Engaging in self-talk that's instructional or motivational has been shown to increase focus, boost self-esteem, and help tackle everyday tasks. For example, one study of collegiate tennis players found that incorporating instructional self-talk into practice increased their concentration and accuracy.",
+      "best_translation": "Ví dụ, một nghiên cứu với cầu thủ bóng rổ đại học cho thấy việc tích hợp tự nói chuyện hướng dẫn vào quá trình tập luyện đã tăng cường sự tập trung và độ chính xác của họ.",
+      "source_duration": 21.399999999999977,
+      "raw_tts_duration": 9.336,
+      "speed_factor": 0.4362616822429911,
+      "suggestion": "allow_translation_longer",
+      "reason": "TTS gốc ngắn hơn source duration khá nhiều, có thể dịch tự nhiên hơn/dài hơn."
+    },
+    {
+      "segment_id": 15,
+      "source_text": "And just as chatting to a friend can help decrease stress, speaking directly to yourself may also help you regulate your emotions. Distanced self-talk is when you talk to yourself, as if in conversation with another person. So rather than, I'm gonna crush this exam, you might think, Caleb, you are prepared for this test.",
+      "best_translation": "Tương tự như khi trò chuyện với bạn bè có thể giúp giảm căng thẳng, việc nói chuyện trực tiếp với chính mình cũng có thể giúp bạn điều chỉnh cảm xúc.",
+      "source_duration": 23.700000000000017,
+      "raw_tts_duration": 7.752,
+      "speed_factor": 0.32708860759493646,
+      "suggestion": "allow_translation_longer",
+      "reason": "TTS gốc ngắn hơn source duration khá nhiều, có thể dịch tự nhiên hơn/dài hơn."
+    },
+    {
+      "segment_id": 16,
+      "source_text": "One study found that this kind of self-talk was especially beneficial for reducing stress when engaging in anxiety-inducing tasks, such as meeting new people or public speaking.",
+      "best_translation": "Một nghiên cứu cho thấy loại tự nói chuyện này đặc biệt hữu ích trong việc giảm căng thẳng khi thực hiện các nhiệm vụ gây lo lắng như gặp người mới hoặc thuyết trình trước đám đông.",
+      "source_duration": 11.300000000000011,
+      "raw_tts_duration": 8.568,
+      "speed_factor": 0.7582300884955744,
+      "suggestion": "ok",
+      "reason": "TTS duration tương đối phù hợp với source duration."
+    },
+    {
+      "segment_id": 17,
+      "source_text": "But where positive self-talk can help you, negative self-talk can harm you. Most people are critical of themselves occasionally. But when this behavior gets too frequent or excessively negative, it can become toxic.",
+      "best_translation": "Khi nào thì việc tự nói chuyện với bản thân có thể giúp ích cho bạn?",
+      "source_duration": 13.900000000000006,
+      "raw_tts_duration": 4.368,
+      "speed_factor": 0.31424460431654666,
+      "suggestion": "allow_translation_longer",
+      "reason": "TTS gốc ngắn hơn source duration khá nhiều, có thể dịch tự nhiên hơn/dài hơn."
+    },
+    {
+      "segment_id": 18,
+      "source_text": "High levels of negative self-talk are often predictive of anxiety in children and adults. And those who constantly blame themselves for their problems and ruminate on those situations typically experience more intense feelings of depression.",
+      "best_translation": "Những người thường tự trách nhiệm và suy nghĩ liên tục về các vấn đề thường xuyên cảm thấy trầm cảm sâu sắc hơn.",
+      "source_duration": 14.5,
+      "raw_tts_duration": 6.264,
+      "speed_factor": 0.432,
+      "suggestion": "allow_translation_longer",
+      "reason": "TTS gốc ngắn hơn source duration khá nhiều, có thể dịch tự nhiên hơn/dài hơn."
+    },
+    {
+      "segment_id": 19,
+      "source_text": "Today, there's a field of psychological treatment called cognitive behavioral therapy, or CBT, which is partially focused on regulating the tone of self-talk.",
+      "best_translation": "Liệu pháp hành vi nhận thức, hay CBT, tập trung vào điều chỉnh giọng nói tự nói.",
+      "source_duration": 11.399999999999977,
+      "raw_tts_duration": 5.664,
+      "speed_factor": 0.49684210526315886,
+      "suggestion": "allow_translation_longer",
+      "reason": "TTS gốc ngắn hơn source duration khá nhiều, có thể dịch tự nhiên hơn/dài hơn."
+    },
+    {
+      "segment_id": 20,
+      "source_text": "Cognitive behavioral therapists often teach strategies to identify cycles of negative thoughts and replace them with neutral or more compassionate reflections.",
+      "best_translation": "Các nhà trị liệu hành vi nhận thức thường dạy các chiến lược để nhận diện các chu kỳ suy nghĩ tiêu cực và thay thế chúng bằng những suy nghĩ trung lập hoặc mang tính nhân văn hơn.",
+      "source_duration": 10.400000000000034,
+      "raw_tts_duration": 8.808,
+      "speed_factor": 0.8469230769230741,
+      "suggestion": "ok",
+      "reason": "TTS duration tương đối phù hợp với source duration."
+    },
+    {
+      "segment_id": 21,
+      "source_text": "Over time, these tools can improve one's mental health.",
+      "best_translation": "Thời gian qua, công cụ này giúp cải thiện sức khỏe tâm thần.",
+      "source_duration": 4.5,
+      "raw_tts_duration": 4.152,
+      "speed_factor": 0.9226666666666667,
+      "suggestion": "ok",
+      "reason": "TTS duration tương đối phù hợp với source duration."
+    },
+    {
+      "segment_id": 22,
+      "source_text": "So the next time you find yourself chatting with yourself, remember to be kind.",
+      "best_translation": "Hãy nhớ khi gặp tiếng nói chuyện với bản thân, hãy đối xử với nó như một người bạn.",
+      "source_duration": 5.7000000000000455,
+      "raw_tts_duration": 5.376,
+      "speed_factor": 0.9431578947368346,
+      "suggestion": "ok",
+      "reason": "TTS duration tương đối phù hợp với source duration."
+    },
+    {
+      "segment_id": 23,
+      "source_text": "That inner voice is a partner you'll be talking to for many years to come.",
+      "best_translation": "Đó là một người bạn tâm trí bạn sẽ trò chuyện với trong tương lai.",
+      "source_duration": 4.2000000000000455,
+      "raw_tts_duration": 4.248,
+      "speed_factor": 1.0114285714285605,
+      "suggestion": "ok",
+      "reason": "TTS duration tương đối phù hợp với source duration."
+    },
+    {
+      "segment_id": 24,
+      "source_text": "Do you ever have trouble concentrating on and completing tasks? Learn more about the relationship between self-talk and procrastination with this video. Or for more actionable, science-based advice on how to build strengths of heart, mind, and will, visit ed.ted.com slash buildcharacter.",
+      "best_translation": "Bạn có bao giờ gặp khó khăn trong việc tập trung hoàn thành công việc không? Tìm hiểu thêm về mối quan hệ giữa tự nói chuyện và sự trì hoãn với video này.",
+      "source_duration": 17.80000000000001,
+      "raw_tts_duration": 9.696,
+      "speed_factor": 0.5447191011235951,
+      "suggestion": "allow_translation_longer",
+      "reason": "TTS gốc ngắn hơn source duration khá nhiều, có thể dịch tự nhiên hơn/dài hơn."
+    }
+  ]
+}
