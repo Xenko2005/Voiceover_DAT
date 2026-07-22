@@ -96,6 +96,10 @@ def convert_to_wav(input_path: str, output_path: str, sample_rate: int = 24000):
     run_cmd(cmd)
 
 
+MAX_TTS_SPEED = 1.15
+SPEED_TOLERANCE_SECONDS = 0.05
+
+
 def build_atempo_filter(speed_factor: float) -> str:
     """
     ffmpeg atempo chỉ hỗ trợ mỗi filter trong khoảng 0.5 đến 2.0.
@@ -129,8 +133,8 @@ def adjust_speed_to_target_duration(
     sample_rate: int = 24000,
 ) -> Dict:
     """
-    Chỉnh tốc độ audio để gần với duration nguồn.
-    Sau đó pad/trim để output có duration đúng target_duration.
+    Giữ giọng TTS tự nhiên bằng cách chỉ tăng tốc trong một giới hạn nhỏ.
+    Phần thời lượng còn thiếu sẽ được bù bằng silence, phần dư sẽ bị trim.
     """
     raw_duration = get_audio_duration(input_wav)
 
@@ -138,11 +142,17 @@ def adjust_speed_to_target_duration(
         target_duration = raw_duration
 
     if raw_duration <= 0:
+        ideal_speed_factor = 1.0
         speed_factor = 1.0
     else:
-        speed_factor = raw_duration / target_duration
+        ideal_speed_factor = raw_duration / max(target_duration, 1e-6)
+        if ideal_speed_factor < 1.0:
+            speed_factor = MAX_TTS_SPEED
+        else:
+            speed_factor = min(ideal_speed_factor, MAX_TTS_SPEED)
 
     temp_speed_wav = output_wav.replace(".wav", "_speed.wav")
+    temp_pad_wav = output_wav.replace(".wav", "_pad.wav")
 
     atempo_filter = build_atempo_filter(speed_factor)
 
@@ -158,20 +168,36 @@ def adjust_speed_to_target_duration(
     ]
     run_cmd(cmd_speed)
 
-    # Pad hoặc trim để duration bằng target_duration.
-    # apad giúp kéo dài nếu audio ngắn hơn, -t giúp cắt nếu dài hơn.
-    cmd_exact = [
-        "ffmpeg",
-        "-y",
-        "-i", temp_speed_wav,
-        "-af", "apad",
-        "-t", f"{target_duration:.3f}",
-        "-ar", str(sample_rate),
-        "-ac", "1",
-        "-acodec", "pcm_s16le",
-        output_wav,
-    ]
-    run_cmd(cmd_exact)
+    adjusted_duration = raw_duration / max(speed_factor, 1e-6) if raw_duration > 0 else target_duration
+    pad_duration = max(0.0, target_duration - adjusted_duration)
+    trim_duration = max(0.0, adjusted_duration - target_duration)
+
+    if pad_duration > SPEED_TOLERANCE_SECONDS:
+        create_silence_wav(temp_pad_wav, pad_duration, sample_rate=sample_rate)
+        concat_wavs([temp_speed_wav, temp_pad_wav], output_wav)
+    elif trim_duration > SPEED_TOLERANCE_SECONDS:
+        cmd_trim = [
+            "ffmpeg",
+            "-y",
+            "-i", temp_speed_wav,
+            "-t", f"{target_duration:.3f}",
+            "-ar", str(sample_rate),
+            "-ac", "1",
+            "-acodec", "pcm_s16le",
+            output_wav,
+        ]
+        run_cmd(cmd_trim)
+    else:
+        cmd_exact = [
+            "ffmpeg",
+            "-y",
+            "-i", temp_speed_wav,
+            "-ar", str(sample_rate),
+            "-ac", "1",
+            "-acodec", "pcm_s16le",
+            output_wav,
+        ]
+        run_cmd(cmd_exact)
 
     final_duration = get_audio_duration(output_wav)
 
@@ -180,10 +206,19 @@ def adjust_speed_to_target_duration(
     except Exception:
         pass
 
+    try:
+        os.remove(temp_pad_wav)
+    except Exception:
+        pass
+
     return {
         "raw_duration": raw_duration,
         "target_duration": target_duration,
+        "ideal_speed_factor": ideal_speed_factor,
         "speed_factor": speed_factor,
+        "adjusted_duration": adjusted_duration,
+        "pad_duration": pad_duration,
+        "trim_duration": trim_duration,
         "final_duration": final_duration,
         "duration_error_abs": abs(final_duration - target_duration),
         "duration_error_ratio": abs(final_duration - target_duration) / max(target_duration, 1e-6),
@@ -294,11 +329,28 @@ def load_module3_results(input_path: str) -> Dict:
     return data
 
 
+def compute_gap_after_segments(results: List[Dict]) -> List[Optional[float]]:
+    gaps: List[Optional[float]] = []
+
+    for index, result in enumerate(results):
+        if index >= len(results) - 1:
+            gaps.append(None)
+            continue
+
+        current_start = float(result.get("start_time", 0.0))
+        current_duration = float(result.get("duration", 0.0))
+        current_end = float(result.get("end_time", current_start + max(0.0, current_duration)))
+        next_start = float(results[index + 1].get("start_time", 0.0))
+        gaps.append(max(0.0, next_start - current_end))
+
+    return gaps
+
+
 # =====================================================
 # Feedback for Module 3
 # =====================================================
 
-def build_feedback_item(result: Dict, tts_info: Dict) -> Dict:
+def build_feedback_item(result: Dict, tts_info: Dict, gap_after_segment: Optional[float]) -> Dict:
     """
     Feedback giúp Module 3 biết câu nào nên dịch ngắn/dài hơn.
     """
@@ -324,6 +376,7 @@ def build_feedback_item(result: Dict, tts_info: Dict) -> Dict:
         "source_text": result.get("source_text"),
         "best_translation": result.get("best_translation"),
         "source_duration": source_duration,
+        "gap_after_segment": gap_after_segment,
         "raw_tts_duration": raw_tts_duration,
         "speed_factor": speed_factor,
         "suggestion": suggestion,
@@ -343,6 +396,8 @@ async def run_module4(args):
 
     if args.max_segments is not None:
         results = results[:args.max_segments]
+
+    gap_after_segments = compute_gap_after_segments(results)
 
     output_dir = Path(args.output_dir)
     segments_dir = output_dir / "segments"
@@ -365,6 +420,7 @@ async def run_module4(args):
 
     for idx, result in enumerate(results, start=1):
         segment_id = int(result.get("segment_id", idx))
+        gap_after_segment = gap_after_segments[idx - 1] if idx - 1 < len(gap_after_segments) else None
 
         source_text = result.get("source_text", "")
         translation = clean_translation(result.get("best_translation", ""))
@@ -380,6 +436,7 @@ async def run_module4(args):
         print("START:", start_time)
         print("END:", end_time)
         print("SOURCE DURATION:", source_duration)
+        print("GAP AFTER SEGMENT:", gap_after_segment if gap_after_segment is not None else "N/A")
 
         # Thêm silence nếu có gap giữa 2 segment.
         gap = start_time - previous_end_time
@@ -408,7 +465,11 @@ async def run_module4(args):
             tts_info = {
                 "raw_duration": 0.0,
                 "target_duration": source_duration,
+                "ideal_speed_factor": 1.0,
                 "speed_factor": 1.0,
+                "adjusted_duration": 0.0,
+                "pad_duration": source_duration,
+                "trim_duration": 0.0,
                 "final_duration": get_audio_duration(str(final_wav)),
                 "duration_error_abs": 0.0,
                 "duration_error_ratio": 0.0,
@@ -441,7 +502,7 @@ async def run_module4(args):
         timeline_wavs.append(str(final_wav))
         previous_end_time = max(previous_end_time, end_time)
 
-        feedback_item = build_feedback_item(result, tts_info)
+        feedback_item = build_feedback_item(result, tts_info, gap_after_segment)
         feedback_items.append(feedback_item)
 
         item = {
@@ -451,9 +512,14 @@ async def run_module4(args):
             "start_time": start_time,
             "end_time": end_time,
             "source_duration": source_duration,
+            "gap_after_segment": gap_after_segment,
             "raw_tts_duration": tts_info["raw_duration"],
             "target_duration": tts_info["target_duration"],
+            "ideal_speed_factor": tts_info.get("ideal_speed_factor"),
             "speed_factor": tts_info["speed_factor"],
+            "adjusted_duration": tts_info.get("adjusted_duration"),
+            "pad_duration": tts_info.get("pad_duration"),
+            "trim_duration": tts_info.get("trim_duration"),
             "final_tts_duration": tts_info["final_duration"],
             "duration_error_abs": tts_info["duration_error_abs"],
             "duration_error_ratio": tts_info["duration_error_ratio"],
@@ -468,7 +534,10 @@ async def run_module4(args):
         module4_results.append(item)
 
         print("RAW TTS DURATION:", round(tts_info["raw_duration"], 3))
+        print("IDEAL SPEED FACTOR:", round(tts_info.get("ideal_speed_factor", 1.0), 3))
         print("SPEED FACTOR:", round(tts_info["speed_factor"], 3))
+        print("PAD DURATION:", round(tts_info.get("pad_duration", 0.0), 3))
+        print("TRIM DURATION:", round(tts_info.get("trim_duration", 0.0), 3))
         print("FINAL TTS DURATION:", round(tts_info["final_duration"], 3))
         print("FEEDBACK:", feedback_item["suggestion"])
 
